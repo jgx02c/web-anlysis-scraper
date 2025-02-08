@@ -39,7 +39,7 @@ def process_transcription(text_chunk, vectordb):
     SYSTEM_TEMPLATE = """
     **Instruction**:  
 
-    You are an SEO analysis assistant. Use the provided HTML content to extract SEO-related tags and answer the user's question.  
+    You are an SEO analysis assistant. Use the provided HTML content to answer the user's question.  
 
     If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context.  
 
