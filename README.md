@@ -32,10 +32,15 @@
   - Open each file in a web browser to confirm validity.
 
 ## 8. Upload to Vectorstore
-- Run `upser_pages.py` to upload the cleaned pages to the vectorstore.
+- Run `upsert_pages.py` to upload the cleaned pages to the vectorstore.
 
 ## 9. Validate the Upload
 - Run `rag_service.py` to verify that the new pages are successfully uploaded.
+
+---
+
+## Create Vector DB ##
+- Run `rag_embeddings.py` to create the vectorDB and upsert all cleaned pages to the vectorstore.
 
 ---
 
@@ -106,13 +111,14 @@ deactivate
 
 ---
 
-### 🔥 Need More?
-Feel free to modify and improve this scraper! 🚀
-```
 
----
+## Nessary Scripts ##
 
-### **How to Use This**
-- Save this as `README.md` in your project.
-- Create a `requirements.txt` file and include `selenium`.
-- Follow the steps in the **README** to set up your environment and run the scraper.
+crawler.py              # Gets all Url's associated with Main URL
+scraper.py              # Uses the Url's to scrape for the HTML content
+cleaner.py              # Clean up the HTML, moving to .txt after Scraping
+rag_upsert.py           # Adds Documents to the vectorestore 
+chunker.py              # Chunks the text during Upserting
+rag_service.py          # Query's the DB
+
+rag_embeddings.py       # Create the vectorstore and DB **Only Use if DB not created**
