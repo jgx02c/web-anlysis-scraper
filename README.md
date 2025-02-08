@@ -2,7 +2,10 @@
 ```md
 # Website Scraper with Selenium
 
-This Python script automates downloading full HTML pages from a list of URLs using Selenium. It loads each page, waits for JavaScript execution, and saves the complete HTML content in a specified folder.
+
+Crawl a website for all related webpages
+Webscrape all WebPages
+
 
 ---
 
