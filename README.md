@@ -117,8 +117,9 @@ deactivate
 crawler.py              # Gets all Url's associated with Main URL
 scraper.py              # Uses the Url's to scrape for the HTML content
 cleaner.py              # Clean up the HTML, moving to .txt after Scraping
-rag_upsert.py           # Adds Documents to the vectorestore 
+rag_upsert.py           # Adds Documents to the VectorDB 
 chunker.py              # Chunks the text during Upserting
-rag_service.py          # Query's the DB
+rag_service.py          # Query's the VectorDB
 
 rag_embeddings.py       # Create the vectorstore and DB **Only Use if DB not created**
+rag_remove.py           # Remove the documents from the VectorDB
