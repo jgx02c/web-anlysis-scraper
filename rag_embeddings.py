@@ -68,7 +68,7 @@ def create_embeddings(html_folder, persist_directory):
     return len(all_documents)
 
 if __name__ == "__main__":
-    HTML_FOLDER = "./new_scripts"  # Replace with your actual folder path
+    HTML_FOLDER = "./downloaded_pages"  # Replace with your actual folder path
     PERSIST_DIRECTORY = "embeddings_db"
     
     try:
