@@ -1,4 +1,5 @@
 import os
+from langchain.text_splitter import CharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from uuid import uuid4
@@ -10,18 +11,6 @@ pc = Pinecone(api_key="6d324250-d2de-411e-9bbe-31986b58d074")
 
 # Initialize embeddings
 embeddings = OpenAIEmbeddings()
-
-def chunk_by_lines(text, lines_per_chunk=10):
-    # Split the text into lines
-    lines = text.splitlines()
-
-    # Create chunks based on the number of lines
-    chunks = [lines[i:i + lines_per_chunk] for i in range(0, len(lines), lines_per_chunk)]
-
-    # Join lines back into a single string for each chunk
-    chunked_texts = ['\n'.join(chunk) for chunk in chunks]
-
-    return chunked_texts
 
 def create_embeddings(html_folder, persist_directory):
     os.makedirs(persist_directory, exist_ok=True)
@@ -36,8 +25,15 @@ def create_embeddings(html_folder, persist_directory):
             with open(file_path, 'r', encoding='utf-8') as file:
                 text = file.read()
 
-            # Split the text into chunks of 10 lines
-            chunks = chunk_by_lines(text, lines_per_chunk=5)
+            # Split the text into chunks
+            text_splitter = CharacterTextSplitter(
+                separator="\n\n",
+                chunk_size=1600,
+                chunk_overlap=50,
+                length_function=len,
+                is_separator_regex=False,
+            )
+            chunks = text_splitter.split_text(text)
 
             # Create a Document object for each chunk
             for chunk in chunks:
