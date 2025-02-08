@@ -1,11 +1,41 @@
 ### **📄 README.md**
 ```md
-# Website Scraper with Selenium
+# Steps to Obtain SEO Data for Each Website and All Pages
 
+## 1. Start with the Main URL
+- Begin with the main URL of the website's home page.
 
-Crawl a website for all related webpages
-Webscrape all WebPages
+## 2. Prepare for Crawling
+- Delete any existing `urls.json`.
+- Add the main URL to the `crawler.py` script.
 
+## 3. Run the Crawler
+- Execute `crawler.py`.
+- Review the output in `urls.json`:
+  - Clean any outliers and duplicates (e.g., `instagram.com`, `facebook.com`).
+  - Manually `Cmd + Click` on links in the JSON to verify webpage validity.
+
+## 4. Prepare for Scraping
+- Delete any existing folder named `downloaded_pages` to prevent contamination.
+
+## 5. Run the Scraper
+- Execute `scraper.py`.
+- Review the output in the `downloaded_pages` folder:
+  - Open each file in a web browser to confirm validity.
+
+## 6. Prepare for Cleaning
+- Delete any existing folder named `cleaned_pages` to prevent contamination.
+
+## 7. Run the Cleaner
+- Execute `cleaner_v2.py`.
+- Review the output in the `cleaned_pages` folder:
+  - Open each file in a web browser to confirm validity.
+
+## 8. Upload to Vectorstore
+- Run `upser_pages.py` to upload the cleaned pages to the vectorstore.
+
+## 9. Validate the Upload
+- Run `rag_service.py` to verify that the new pages are successfully uploaded.
 
 ---
 
@@ -65,27 +95,6 @@ selenium
 
 ---
 
-### 5️⃣ Add URLs to `urls.json`
-Create a JSON file called `urls.json` in the project folder with the list of pages to scrape:
-
-```json
-[
-    "https://example.com",
-    "https://example.com/page2"
-]
-```
-
----
-
-### 6️⃣ Run the Script
-Execute the script using:
-
-```bash
-python scraper.py
-```
-
----
-
 ## 🛑 Deactivating the Virtual Environment
 After running the script, deactivate the virtual environment:
 
@@ -94,15 +103,6 @@ deactivate
 ```
 
 (On Windows, use `venv\Scripts\deactivate` instead.)
-
----
-
-## 🚀 Features
-✅ Uses **Selenium** to render JavaScript-powered pages.  
-✅ Saves full **HTML** content.  
-✅ Reads URLs from a **JSON file**.  
-✅ Stores files in a **designated folder**.  
-✅ **Runs in headless mode** for efficiency.  
 
 ---
 
