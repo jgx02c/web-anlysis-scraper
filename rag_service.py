@@ -22,7 +22,7 @@ from langchain_pinecone import PineconeVectorStore
 pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 llm = ChatOpenAI(model="gpt-4o", streaming=True)
 embeddings = OpenAIEmbeddings()
-index_name = "dialogica"
+index_name = "leaps"
 index = pc.Index(index_name)
 PineconeVectorStore(index=index, embedding=embeddings)
 
@@ -37,27 +37,20 @@ def process_transcription(text_chunk, vectordb):
     retriever = vectordb.as_retriever(search_kwargs={"k": 5})
     
     SYSTEM_TEMPLATE = """
-    **Instruction**: [Specify which option you want to focus on, e.g., "Produce follow-up questions."] 
-    
-    Of the following choices Cross reference the live-feed transcription snippet with the data from the context, 
-    and pick one number from the list and produce the result. If none of the options apply, just cross reference what can be found.
-    DO NOT RESTATE THE OPTION, JUST GIVE THE RESPONSE.  
-    --- 
-    
-    1. Produce any matching insights of conflicting information or confirmation of information.
-    
-    2. Produce follow-up questions for the Attorney to ask.
-    
-    3. Produce any words the attorney might want to log.
-    
-    4. Produce any notes the attorney might want to use.
-    
-    **Please limit this response to 10-15 sentences or 3-5 bullet points.**
-    
+    **Instruction**:  
+
+    You are an SEO analysis assistant. Use the provided HTML content to extract SEO-related tags and answer the user's question.  
+
+    If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context.  
+
     ---
-    **Context**:
+    **Context**:  
     {context}
+
+    **Response**:  
     """
+
+
     
     question_answering_prompt = ChatPromptTemplate.from_messages([
         ("system", SYSTEM_TEMPLATE),

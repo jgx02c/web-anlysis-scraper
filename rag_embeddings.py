@@ -27,7 +27,7 @@ def create_embeddings(html_folder, persist_directory):
 
             # Split the text into chunks
             text_splitter = CharacterTextSplitter(
-                separator=".",
+                separator="\n\n",
                 chunk_size=250,
                 chunk_overlap=50,
                 length_function=len,
@@ -68,7 +68,7 @@ def create_embeddings(html_folder, persist_directory):
     return len(all_documents)
 
 if __name__ == "__main__":
-    HTML_FOLDER = "./downloaded_pages"  # Replace with your actual folder path
+    HTML_FOLDER = "./pages"  # Replace with your actual folder path
     PERSIST_DIRECTORY = "embeddings_db"
     
     try:
