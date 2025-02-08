@@ -28,7 +28,7 @@ def create_embeddings(html_folder, persist_directory):
             # Split the text into chunks
             text_splitter = CharacterTextSplitter(
                 separator="\n\n",
-                chunk_size=250,
+                chunk_size=1600,
                 chunk_overlap=50,
                 length_function=len,
                 is_separator_regex=False,
