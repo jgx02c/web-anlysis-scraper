@@ -28,7 +28,7 @@ def extract_links(url):
         print(f"Error: Unable to fetch the page (status code: {response.status_code})")
         return []
 
-def save_to_json(data, filename='output.json'):
+def save_to_json(data, filename='urls.json'):
     # Save the data to a JSON file
     with open(filename, 'w') as json_file:
         json.dump(data, json_file, indent=4)
