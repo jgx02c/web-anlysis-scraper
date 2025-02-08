@@ -41,7 +41,7 @@ def create_embeddings(html_folder, persist_directory):
                 all_documents.append(doc)  # Append the Document object
 
     # Ensure the index is created only once
-    index_name = "dialogica"
+    index_name = "leaps"
 
     existing_indexes = [index_info["name"] for index_info in pc.list_indexes()]
 
