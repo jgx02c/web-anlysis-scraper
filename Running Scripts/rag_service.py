@@ -49,8 +49,6 @@ def process_transcription(text_chunk, vectordb):
 
     **Response**:  
     """
-
-
     
     question_answering_prompt = ChatPromptTemplate.from_messages([
         ("system", SYSTEM_TEMPLATE),
