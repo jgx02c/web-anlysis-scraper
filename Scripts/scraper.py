@@ -7,8 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager  # Import webdriver-manager
 
 # Configuration
-FOLDER_NAME = "downloaded_pages"  # Change to your desired folder name
-URLS_JSON_FILE = "urls.json"  # JSON file containing the list of URLs
+FOLDER_NAME = "bellicon_pages"  # Change to your desired folder name
+URLS_JSON_FILE = "bellicon_sorted.json"  # JSON file containing the list of URLs
 
 # Ensure the folder exists
 os.makedirs(FOLDER_NAME, exist_ok=True)
