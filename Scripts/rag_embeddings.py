@@ -6,9 +6,18 @@ from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain_openai import OpenAIEmbeddings
 from langchain.schema import Document
-from langchain.document_loaders import UnstructuredFileLoader
+from langchain_community.document_loaders import UnstructuredLoader
 from typing import List, Dict, Tuple
 import time
+import warnings
+import urllib3
+
+# Suppress deprecation warnings
+warnings.filterwarnings('ignore', category=DeprecationWarning)
+warnings.filterwarnings('ignore', category=urllib3.exceptions.NotOpenSSLWarning)
+
+# Suppress Tk deprecation warning
+os.environ['TK_SILENCE_DEPRECATION'] = '1'
 
 def get_folder_path():
     """Open a folder selection dialog and return the selected path."""
@@ -38,19 +47,20 @@ def ensure_index_exists(pc: Pinecone, index_name: str) -> bool:
     return False
 
 def process_file(file_path: str, text_splitter: CharacterTextSplitter) -> List[Document]:
-    """Process a single file using UnstructuredFileLoader."""
-    loader = UnstructuredFileLoader(file_path)
-    documents = loader.load()
-    
-    # Split the documents
-    split_docs = []
-    for doc in documents:
-        splits = text_splitter.split_text(doc.page_content)
+    """Process a single file using UnstructuredLoader."""
+    try:
+        # First try reading the file directly
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text = file.read()
+        
+        # Split the text
+        splits = text_splitter.split_text(text)
         filename = os.path.basename(file_path)
         prefix = filename.replace('.txt', '').upper()
         
+        documents = []
         for i, split in enumerate(splits):
-            split_docs.append(
+            documents.append(
                 Document(
                     page_content=split,
                     metadata={
@@ -61,8 +71,33 @@ def process_file(file_path: str, text_splitter: CharacterTextSplitter) -> List[D
                     }
                 )
             )
-    
-    return split_docs
+        
+        return documents
+    except UnicodeDecodeError:
+        # If direct reading fails, try UnstructuredLoader as fallback
+        loader = UnstructuredLoader(file_path)
+        docs = loader.load()
+        
+        split_docs = []
+        for doc in docs:
+            splits = text_splitter.split_text(doc.page_content)
+            filename = os.path.basename(file_path)
+            prefix = filename.replace('.txt', '').upper()
+            
+            for i, split in enumerate(splits):
+                split_docs.append(
+                    Document(
+                        page_content=split,
+                        metadata={
+                            'source': prefix,
+                            'filename': filename,
+                            'chunk_index': i,
+                            'total_chunks': len(splits)
+                        }
+                    )
+                )
+        
+        return split_docs
 
 def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], batch_size: int = 50):
     """Upsert documents in batches to handle rate limits."""
