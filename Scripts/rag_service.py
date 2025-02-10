@@ -43,6 +43,7 @@ def process_transcription(text_chunk, vectordb):
 
     If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context.  
 
+    In your response fix any text issues from tokenization.
     ---
     **Context**:  
     {context}
