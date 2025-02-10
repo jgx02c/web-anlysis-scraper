@@ -21,7 +21,7 @@ from langchain_pinecone import PineconeVectorStore
 # Ensure the index is created only once
 pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 llm = ChatOpenAI(model="gpt-4o", streaming=True)
-embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=os.getenv('OPENAI_API_KEY'))
+embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", api_key=os.getenv('OPENAI_API_KEY'))
 index_name = "leaps"
 index = pc.Index(index_name)
 PineconeVectorStore(index=index, embedding=embeddings)

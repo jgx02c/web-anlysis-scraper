@@ -52,13 +52,15 @@ def clean_filename(filename: str) -> str:
         return '_'.join(parts[1:])
     return filename
 
+import re
+
 def clean_text(text: str) -> str:
-    """Clean text by removing extra spaces and normalizing whitespace."""
-    # Replace multiple spaces with single space
-    text = ' '.join(text.split())
-    # Remove unnecessary Unicode characters
-    text = ''.join(char for char in text if ord(char) < 128)
+    """Normalize text while keeping structure (meta tags, lists, and spacing)."""
+    text = re.sub(r'\n{3,}', '\n\n', text)  # Reduce excessive line breaks
+    text = re.sub(r'([^\n])(\n- )', r'\1\n\n\2', text)  # Force new lines before bullet points
+    text = re.sub(r'[ \t]+', ' ', text)  # Normalize spaces but keep structure
     return text.strip()
+
 
 def process_file(file_path: str, text_splitter: RecursiveCharacterTextSplitter) -> List[Document]:
     """Process a single file using TextLoader."""
@@ -68,25 +70,21 @@ def process_file(file_path: str, text_splitter: RecursiveCharacterTextSplitter) 
         
         split_docs = []
         for doc in docs:
-            # Clean the text before splitting
             cleaned_text = clean_text(doc.page_content)
             splits = text_splitter.split_text(cleaned_text)
-            filename = os.path.basename(file_path)
-            clean_name = clean_filename(filename)
-            
+
+            print(f"\n=== SPLIT OUTPUT ({len(splits)} chunks) ===")
+            for i, split in enumerate(splits[:5]):  # Print first 5 chunks for inspection
+                print(f"\nChunk {i+1}:\n{split}\n{'-'*50}")
+
             for split in splits:
-                # No metadata - we'll pass it separately during upsert
-                split_docs.append(
-                    Document(
-                        page_content=clean_text(split),
-                        metadata={}
-                    )
-                )
+                split_docs.append(Document(page_content=split.strip(), metadata={}))
         
         return split_docs
     except Exception as e:
-        print(f"Error loading file {file_path}: {str(e)}")
+        print(f"Error processing {file_path}: {e}")
         raise
+
 
 def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], filename: str, batch_size: int = 50):
     """Upsert documents in batches to handle rate limits."""
@@ -111,16 +109,26 @@ def create_embeddings(txt_folder: str, persist_directory: str) -> Tuple[int, Lis
     load_dotenv()
     
     pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
-    embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=os.getenv('OPENAI_API_KEY'))
+    embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", api_key=os.getenv('OPENAI_API_KEY'))
     
     # Use RecursiveCharacterTextSplitter with careful splitting
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=50,
-        length_function=len,
-        separators=["\n\n", "\n", ". ", ", ", " ", ""],
-        keep_separator=True
-    )
+    chunk_size=1000,
+    chunk_overlap=100,
+    length_function=len,
+    separators=[
+        "\n\n",  # Paragraph breaks
+        "\n- ",  # Bullet points (meta tags)
+        "\n",  # Single line breaks
+        ". ",  # Sentence boundaries
+        "? ",
+        "! "
+    ],
+    keep_separator=True  # Preserve the separators for readability
+)
+
+
+
 
     processed_files = []
     total_chunks = 0
