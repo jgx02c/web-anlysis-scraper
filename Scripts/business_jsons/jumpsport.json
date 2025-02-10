@@ -1,80 +1,79 @@
 {
-    "business_id": "3",
-    "name": "bellicon",
-    "website": "https://www.bellicon.com/en-us/",
-    "description": "bellicon specializes in high-quality mini trampolines designed for health and fitness, featuring a custom-formulated, low-impact bungee suspension system that maximizes workouts while being gentle on the joints.",
-    "products": [
-      {
-        "name": "bellicon Fitness Rebounder 112 cm",
-        "description": "A compact rebounder with a 112 cm diameter, equipped with folding legs for easy setup and storage, ideal for smaller living spaces.",
-        "url": "https://www.bellicon.com/en-eu/product/bellicon-112-folding-green/"
-      },
-      {
-        "name": "bellicon Rebounder 112 cm with T-Bar",
-        "description": "A medium-sized rebounder featuring a quick-release T-bar for added stability during workouts, suitable for both vigorous and gentle exercises.",
-        "url": "https://www.bellicon.com/en-eu/product/bellicon-112-folding-black-t-bar/"
-      },
-      {
-        "name": "Medical Rebounder 112 cm",
-        "description": "A compact mini-trampoline offering joint-friendly vibrations for safe and effective training, ideal for all ages.",
-        "url": "https://www.bellicon.com/en-eu/product/bellicon-112-folding-grey/"
-      }
-    ],
-    "benefits": [
-      "Low-impact cardiovascular exercise",
-      "Improved balance and strength",
-      "Enhanced coordination and flexibility",
-      "Joint-friendly workouts"
-    ],
-    "customer_reviews": [
-      {
-        "name": "John D.",
-        "location": "New York",
-        "age": 42,
-        "comment": "The bellicon rebounder has transformed my fitness routine; it's both fun and effective."
-      },
-      {
-        "name": "Emily R.",
-        "location": "California",
-        "age": 29,
-        "comment": "I love how gentle the bellicon is on my joints while providing an intense workout."
-      },
-      {
-        "name": "Michael S.",
-        "location": "Texas",
-        "age": 35,
-        "comment": "The quality and design of the bellicon rebounder are top-notch; highly recommend it!"
-      }
-    ],
-    "promotions": [
-      {
-        "title": "Refocus, Rebound, Repeat - 10% Off",
-        "discount": "10% OFF SITEWIDE",
-        "details": "From January 27th to February 10th, get 10% off your trampoline or accessory purchase."
-      }
-    ],
-    "contact_information": {
-      "address": "bellicon USA LLC, 651 W Washington Blvd, Suite 101, Chicago, IL 60661",
-      "phone": "(312) 720-1116",
-      "email": "info@bellicon.com"
+  "business_id": "3",
+  "name": "JumpSport",
+  "website": "https://www.jumpsport.com/",
+  "description": "JumpSport is a leading manufacturer of recreational and fitness trampolines, renowned for pioneering safety innovations like the trampoline safety net enclosure. Their products cater to all ages, offering low-impact cardiovascular exercise and promoting overall health and wellness.",
+  "products": [
+    {
+      "name": "JumpSport 350 PRO Fitness Trampoline",
+      "description": "A 39-inch fitness trampoline featuring adjustable medium or firm bounce settings, with a weight rating of up to 300 lbs. Available in various limited edition colors.",
+      "url": "https://www.jumpsport.com/pro-series-fitness-trampoline/"
     },
-    "social_media": [
-      {
-        "platform": "Facebook",
-        "url": "https://www.facebook.com/bellicon.USA/"
-      },
-      {
-        "platform": "Instagram",
-        "url": "https://www.instagram.com/bellicon.usa/"
-      },
-      {
-        "platform": "YouTube",
-        "url": "https://www.youtube.com/user/belliconusa"
-      }
-    ],
-    "additional_info": {
-      "founded": 2003,
-      "unique_feature": "Pioneered customized bungee cords for mini-trampoline suspension, enhancing fitness and therapeutic uses."
+    {
+      "name": "JumpSport 550 PRO CE+ Fitness Trampoline",
+      "description": "Designed for both home and fitness club use, this trampoline offers robust durability, stackable bumpers for easy storage, an enhanced skirt mat, and adjustable cords for a customizable, safe bounce.",
+      "url": "https://www.jumpsport.com/fitness-guide/"
+    },
+    {
+      "name": "JumpSport Home 120 Fitness Trampoline",
+      "description": "An entry-level 44-inch trampoline with 36 elastic resistance bands and a built-in handlebar for extra stability, supporting users up to 250 lbs.",
+      "url": "https://staminaproducts.com/product/jumpsport-home-fitness-trampoline-120/"
     }
+  ],
+  "benefits": [
+    "Low-impact cardiovascular exercise",
+    "Improved balance and coordination",
+    "Enhanced lymphatic system cleansing",
+    "Joint-friendly workouts"
+  ],
+  "customer_reviews": [
+    {
+      "name": "Sarah M.",
+      "location": "Florida",
+      "age": 34,
+      "comment": "The JumpSport trampoline has been a fantastic addition to my home workouts; it's fun and effective."
+    },
+    {
+      "name": "David L.",
+      "location": "Texas",
+      "age": 45,
+      "comment": "I appreciate the sturdy design and the low-impact exercise it provides. Great for my joints."
+    },
+    {
+      "name": "Linda K.",
+      "location": "California",
+      "age": 29,
+      "comment": "The adjustable bounce feature is excellent, and the quality is top-notch. Highly recommend!"
+    }
+  ],
+  "promotions": [
+    {
+      "title": "New Year, New You - 15% Off",
+      "discount": "15% OFF SITEWIDE",
+      "details": "From January 1st to January 31st, enjoy 15% off all trampolines and accessories."
+    }
+  ],
+  "contact_information": {
+    "address": "JumpSport, Inc., 2055 S. 7th Street, San Jose, CA 95112",
+    "phone": "(888) 567-5867",
+    "email": "info@jumpsport.com"
+  },
+  "social_media": [
+    {
+      "platform": "Facebook",
+      "url": "https://www.facebook.com/JumpSport/"
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/jumpsport/"
+    },
+    {
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/user/JumpSportFitness"
+    }
+  ],
+  "additional_info": {
+    "founded": 1997,
+    "unique_feature": "Invented the trampoline safety net enclosure, enhancing safety for users worldwide."
   }
-  
+}
