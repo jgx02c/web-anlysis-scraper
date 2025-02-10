@@ -29,27 +29,55 @@ def initialize_services():
 
 def clean_text(text: str) -> str:
     """Clean and normalize text content."""
-    # Remove excessive whitespace
-    text = re.sub(r'\s+', ' ', text)
-    # Remove repeated newlines
-    text = re.sub(r'\n\s*\n', '\n', text)
-    # Normalize spacing around punctuation
-    text = re.sub(r'\s*([.,!?])\s*', r'\1 ', text)
+    if not text:
+        return ""
+        
+    # Join text if it's a list
+    if isinstance(text, list):
+        text = ' '.join(text)
+        
+    # Convert to string if not already
+    text = str(text)
+    
+    # Replace multiple spaces with single space
+    text = ' '.join(text.split())
+    
+    # Fix common spacing issues around punctuation
+    text = re.sub(r'\s+([.,!?:;])', r'\1', text)
+    
+    # Fix spacing after punctuation
+    text = re.sub(r'([.,!?:;])(\S)', r'\1 \2', text)
+    
+    # Remove repeated periods
+    text = re.sub(r'\.+', '.', text)
+    
+    # Fix spacing around hyphens in compound words
+    text = re.sub(r'\s*-\s*', '-', text)
+    
     return text.strip()
 
 def parse_retriever_input(params: Dict) -> str:
     """Parse and clean the retriever input."""
     last_message_content = params["messages"][-1].content
+    
+    # Handle list content
     if isinstance(last_message_content, list):
         text_content = " ".join([
-            item.get("text", "") 
+            str(item.get("text", "")) 
             for item in last_message_content 
-            if item["type"] == "text"
+            if item.get("type") == "text" and item.get("text")
         ])
     else:
-        text_content = last_message_content
+        text_content = str(last_message_content)
     
-    return clean_text(text_content)
+    # Clean and normalize the text
+    cleaned_text = clean_text(text_content)
+    
+    # Ensure proper sentence spacing
+    sentences = cleaned_text.split('. ')
+    cleaned_sentences = [s.strip() for s in sentences if s.strip()]
+    
+    return '. '.join(cleaned_sentences)
 
 def create_qa_chain(llm: ChatOpenAI, retriever) -> RunnablePassthrough:
     """Create the question-answering chain."""
@@ -133,7 +161,10 @@ def main():
                 if cleaned_insight:  # Only append non-empty insights
                     insights.append(cleaned_insight)
             
-            output = "\n".join(insights)  # Use newline instead of space for joining
+            # Join insights and ensure proper sentence spacing
+            output = " ".join(insights)
+            # Clean the final output one more time
+            output = clean_text(output)
             print(f"\nOutput:\n{output}\n")
             
         except KeyboardInterrupt:
