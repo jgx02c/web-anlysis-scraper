@@ -6,7 +6,7 @@ from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain_openai import OpenAIEmbeddings
 from langchain.schema import Document
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import PyPDFLoader
 from typing import List, Dict, Tuple
 import time
 import warnings
@@ -21,7 +21,7 @@ def get_folder_path():
     """Open a folder selection dialog and return the selected path."""
     root = Tk()
     root.withdraw()
-    folder_path = filedialog.askdirectory(title="Select Folder Containing Text Files")
+    folder_path = filedialog.askdirectory(title="Select Folder Containing PDF Files")
     return folder_path
 
 def ensure_index_exists(pc: Pinecone, index_name: str) -> bool:
@@ -48,46 +48,58 @@ def clean_filename(filename: str) -> str:
     """Clean filename by removing domain and .com part."""
     parts = filename.split('_')
     if len(parts) > 1:
-        # Remove the domain part and keep only the path
         return '_'.join(parts[1:])
     return filename
 
-import re
-
 def clean_text(text: str) -> str:
-    """Normalize text while keeping structure (meta tags, lists, and spacing)."""
-    text = re.sub(r'\n{3,}', '\n\n', text)  # Reduce excessive line breaks
-    text = re.sub(r'([^\n])(\n- )', r'\1\n\n\2', text)  # Force new lines before bullet points
-    text = re.sub(r'[ \t]+', ' ', text)  # Normalize spaces but keep structure
+    """Clean and normalize PDF text while preserving structure."""
+    import re
+    # Remove multiple spaces
+    text = re.sub(r'\s+', ' ', text)
+    # Remove multiple newlines while preserving paragraph structure
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    # Clean up any PDF artifacts (common issues in PDF extraction)
+    text = re.sub(r'•', '- ', text)  # Replace bullets with dashes
+    text = re.sub(r'([^\n])(\n- )', r'\1\n\n- ', text)  # Format lists properly
+    text = re.sub(r'(\w)-\n(\w)', r'\1\2', text)  # Fix hyphenated words
     return text.strip()
 
-
 def process_file(file_path: str, text_splitter: RecursiveCharacterTextSplitter) -> List[Document]:
-    """Process a single file using TextLoader."""
+    """Process a single PDF file using PyPDFLoader."""
     try:
-        loader = TextLoader(file_path, encoding='utf-8')
-        docs = loader.load()
+        # Use PyPDFLoader for PDF processing
+        loader = PyPDFLoader(file_path)
+        pages = loader.load()
         
         split_docs = []
-        for doc in docs:
-            cleaned_text = clean_text(doc.page_content)
+        for page in pages:
+            # Clean the extracted text
+            cleaned_text = clean_text(page.page_content)
+            # Update page metadata
+            page_num = page.metadata.get('page', 0) + 1
+            
+            # Split the cleaned text
             splits = text_splitter.split_text(cleaned_text)
 
-            print(f"\n=== SPLIT OUTPUT ({len(splits)} chunks) ===")
-            for i, split in enumerate(splits[:5]):  # Print first 5 chunks for inspection
-                print(f"\nChunk {i+1}:\n{split}\n{'-'*50}")
+            print(f"\n=== Processing Page {page_num} ({len(splits)} chunks) ===")
+            for i, split in enumerate(splits[:3]):  # Print first 3 chunks for inspection
+                print(f"\nChunk {i+1}:\n{split[:200]}...\n{'-'*50}")
 
+            # Create documents with page metadata
             for split in splits:
-                split_docs.append(Document(page_content=split.strip(), metadata={}))
+                metadata = {
+                    'page': page_num,
+                    'source': file_path
+                }
+                split_docs.append(Document(page_content=split.strip(), metadata=metadata))
         
         return split_docs
     except Exception as e:
         print(f"Error processing {file_path}: {e}")
         raise
 
-
 def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], filename: str, batch_size: int = 50):
-    """Upsert documents in batches to handle rate limits."""
+    """Upsert documents in batches with rate limiting."""
     total_docs = len(documents)
     clean_name = clean_filename(filename)
     
@@ -96,36 +108,39 @@ def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], filen
         print(f"Upserting batch {i//batch_size + 1}/{(total_docs + batch_size - 1)//batch_size} "
               f"({len(batch)} documents)")
         
-        # Add minimal metadata during upsert
+        # Update metadata for each document in batch
         for doc in batch:
-            doc.metadata = {'filename': clean_name}
+            doc.metadata.update({'filename': clean_name})
         
         vectordb.add_documents(documents=batch)
         time.sleep(2)  # Rate limit delay
 
-def create_embeddings(txt_folder: str, persist_directory: str) -> Tuple[int, List[Dict]]:
-    """Process text files and create embeddings in Pinecone."""
+def create_embeddings(pdf_folder: str, persist_directory: str) -> Tuple[int, List[Dict]]:
+    """Process PDF files and create embeddings in Pinecone."""
     os.makedirs(persist_directory, exist_ok=True)
     load_dotenv()
     
     pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
     embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", api_key=os.getenv('OPENAI_API_KEY'))
     
-    # Use RecursiveCharacterTextSplitter with careful splitting
+    # Configure text splitter for PDF content
     text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=100,
-    length_function=len,
-    separators=[
-        "\n\n",  # Paragraph breaks
-        "\n- ",  # Bullet points (meta tags)
-        "\n",  # Single line breaks
-        ". ",  # Sentence boundaries
-        "? ",
-        "! "
-    ],
-    keep_separator=True  # Preserve the separators for readability
-)
+        chunk_size=1000,
+        chunk_overlap=200,  # Increased overlap for better context preservation
+        length_function=len,
+        separators=[
+            "\n\n",  # Paragraph breaks
+            "\n",    # Line breaks
+            ". ",    # Sentences
+            "? ",    # Questions
+            "! ",    # Exclamations
+            ";",     # Semi-colons
+            ":",     # Colons
+            " ",     # Words
+            ""       # Characters
+        ],
+        keep_separator=True
+    )
 
     processed_files = []
     total_chunks = 0
@@ -141,15 +156,15 @@ def create_embeddings(txt_folder: str, persist_directory: str) -> Tuple[int, Lis
     index = pc.Index(index_name)
     vectordb = PineconeVectorStore(index=index, embedding=embeddings)
 
-    # Process files one at a time
-    for dirpath, _, filenames in os.walk(txt_folder):
+    # Process PDF files
+    for dirpath, _, filenames in os.walk(pdf_folder):
         for filename in filenames:
-            if filename.endswith('.txt'):
+            if filename.endswith('.pdf'):
                 file_path = os.path.join(dirpath, filename)
                 print(f"\nProcessing {filename}...")
                 
                 try:
-                    # Process single file
+                    # Process single PDF file
                     documents = process_file(file_path, text_splitter)
                     num_chunks = len(documents)
                     
