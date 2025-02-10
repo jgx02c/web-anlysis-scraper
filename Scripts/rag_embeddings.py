@@ -1,22 +1,20 @@
 import os
 from dotenv import load_dotenv
 from tkinter import filedialog, Tk
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain_openai import OpenAIEmbeddings
 from langchain.schema import Document
-from langchain_community.document_loaders import UnstructuredLoader
+from langchain_community.document_loaders import TextLoader
 from typing import List, Dict, Tuple
 import time
 import warnings
 import urllib3
 
-# Suppress deprecation warnings
+# Suppress warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 warnings.filterwarnings('ignore', category=urllib3.exceptions.NotOpenSSLWarning)
-
-# Suppress Tk deprecation warning
 os.environ['TK_SILENCE_DEPRECATION'] = '1'
 
 def get_folder_path():
@@ -46,69 +44,66 @@ def ensure_index_exists(pc: Pinecone, index_name: str) -> bool:
     print(f"Index {index_name} already exists, proceeding with upsert")
     return False
 
-def process_file(file_path: str, text_splitter: CharacterTextSplitter) -> List[Document]:
-    """Process a single file using UnstructuredLoader."""
+def clean_filename(filename: str) -> str:
+    """Clean filename by removing domain and .com part."""
+    parts = filename.split('_')
+    if len(parts) > 1:
+        # Remove the domain part and keep only the path
+        return '_'.join(parts[1:])
+    return filename
+
+def clean_text(text: str) -> str:
+    """Clean text by removing extra spaces and normalizing whitespace."""
+    # Replace multiple spaces with single space
+    text = ' '.join(text.split())
+    # Remove unnecessary Unicode characters
+    text = ''.join(char for char in text if ord(char) < 128)
+    return text.strip()
+
+def process_file(file_path: str, text_splitter: RecursiveCharacterTextSplitter) -> List[Document]:
+    """Process a single file using TextLoader."""
     try:
-        # First try reading the file directly
-        with open(file_path, 'r', encoding='utf-8') as file:
-            text = file.read()
-        
-        # Split the text
-        splits = text_splitter.split_text(text)
-        filename = os.path.basename(file_path)
-        prefix = filename.replace('.txt', '').upper()
-        
-        documents = []
-        for i, split in enumerate(splits):
-            documents.append(
-                Document(
-                    page_content=split,
-                    metadata={
-                        'source': prefix,
-                        'filename': filename,
-                        'chunk_index': i,
-                        'total_chunks': len(splits)
-                    }
-                )
-            )
-        
-        return documents
-    except UnicodeDecodeError:
-        # If direct reading fails, try UnstructuredLoader as fallback
-        loader = UnstructuredLoader(file_path)
+        loader = TextLoader(file_path, encoding='utf-8')
         docs = loader.load()
         
         split_docs = []
         for doc in docs:
-            splits = text_splitter.split_text(doc.page_content)
+            # Clean the text before splitting
+            cleaned_text = clean_text(doc.page_content)
+            splits = text_splitter.split_text(cleaned_text)
             filename = os.path.basename(file_path)
-            prefix = filename.replace('.txt', '').upper()
+            clean_name = clean_filename(filename)
             
-            for i, split in enumerate(splits):
+            for split in splits:
+                # No metadata - we'll pass it separately during upsert
                 split_docs.append(
                     Document(
-                        page_content=split,
-                        metadata={
-                            'source': prefix,
-                            'filename': filename,
-                            'chunk_index': i,
-                            'total_chunks': len(splits)
-                        }
+                        page_content=clean_text(split),
+                        metadata={}
                     )
                 )
         
         return split_docs
+    except Exception as e:
+        print(f"Error loading file {file_path}: {str(e)}")
+        raise
 
-def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], batch_size: int = 50):
+def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], filename: str, batch_size: int = 50):
     """Upsert documents in batches to handle rate limits."""
     total_docs = len(documents)
+    clean_name = clean_filename(filename)
+    
     for i in range(0, total_docs, batch_size):
         batch = documents[i:i + batch_size]
         print(f"Upserting batch {i//batch_size + 1}/{(total_docs + batch_size - 1)//batch_size} "
               f"({len(batch)} documents)")
+        
+        # Add minimal metadata during upsert
+        for doc in batch:
+            doc.metadata = {'filename': clean_name}
+        
         vectordb.add_documents(documents=batch)
-        # Add a small delay between batches to respect rate limits
-        time.sleep(2)
+        time.sleep(2)  # Rate limit delay
 
 def create_embeddings(txt_folder: str, persist_directory: str) -> Tuple[int, List[Dict]]:
     """Process text files and create embeddings in Pinecone."""
@@ -116,15 +111,15 @@ def create_embeddings(txt_folder: str, persist_directory: str) -> Tuple[int, Lis
     load_dotenv()
     
     pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
-    embeddings = OpenAIEmbeddings(api_key=os.getenv('OPENAI_API_KEY'))
+    embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=os.getenv('OPENAI_API_KEY'))
     
-    # Initialize text splitter
-    text_splitter = CharacterTextSplitter(
-        separator="\n\n",
-        chunk_size=2000,
+    # Use RecursiveCharacterTextSplitter with careful splitting
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
         chunk_overlap=50,
         length_function=len,
-        is_separator_regex=False,
+        separators=["\n\n", "\n", ". ", ", ", " ", ""],
+        keep_separator=True
     )
 
     processed_files = []
@@ -154,12 +149,11 @@ def create_embeddings(txt_folder: str, persist_directory: str) -> Tuple[int, Lis
                     num_chunks = len(documents)
                     
                     # Batch upsert for this file
-                    batch_upsert(vectordb, documents)
+                    batch_upsert(vectordb, documents, filename)
                     
                     # Record successful processing
                     processed_files.append({
-                        'filename': filename,
-                        'prefix': filename.replace('.txt', '').upper(),
+                        'filename': clean_filename(filename),
                         'num_chunks': num_chunks,
                         'file_path': file_path
                     })
