@@ -39,11 +39,11 @@ def process_transcription(text_chunk, vectordb):
     SYSTEM_TEMPLATE = """
     **Instruction**:  
 
-    You are an SEO analysis assistant. Use the provided HTML content to answer the user's question.  
+    You are an SEO analysis assistant and Chatbot. Use the provided HTML content to answer the user's questions.  
 
-    If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context.  
+    If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context or metadata.  
 
-    In your response fix any text issues from tokenization.
+    In your response fix any text issues involving spacing from tokenization.
     ---
     **Context**:  
     {context}
