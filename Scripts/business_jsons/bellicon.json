@@ -1,0 +1,80 @@
+{
+    "business_id": "2",
+    "name": "bellicon",
+    "website": "https://www.bellicon.com/en-us/",
+    "description": "bellicon specializes in high-quality mini trampolines designed for health and fitness, featuring a custom-formulated, low-impact bungee suspension system that maximizes workouts while being gentle on the joints.",
+    "products": [
+      {
+        "name": "bellicon Fitness Rebounder 112 cm",
+        "description": "A compact rebounder with a 112 cm diameter, equipped with folding legs for easy setup and storage, ideal for smaller living spaces.",
+        "url": "https://www.bellicon.com/en-eu/product/bellicon-112-folding-green/"
+      },
+      {
+        "name": "bellicon Rebounder 112 cm with T-Bar",
+        "description": "A medium-sized rebounder featuring a quick-release T-bar for added stability during workouts, suitable for both vigorous and gentle exercises.",
+        "url": "https://www.bellicon.com/en-eu/product/bellicon-112-folding-black-t-bar/"
+      },
+      {
+        "name": "Medical Rebounder 112 cm",
+        "description": "A compact mini-trampoline offering joint-friendly vibrations for safe and effective training, ideal for all ages.",
+        "url": "https://www.bellicon.com/en-eu/product/bellicon-112-folding-grey/"
+      }
+    ],
+    "benefits": [
+      "Low-impact cardiovascular exercise",
+      "Improved balance and strength",
+      "Enhanced coordination and flexibility",
+      "Joint-friendly workouts"
+    ],
+    "customer_reviews": [
+      {
+        "name": "John D.",
+        "location": "New York",
+        "age": 42,
+        "comment": "The bellicon rebounder has transformed my fitness routine; it's both fun and effective."
+      },
+      {
+        "name": "Emily R.",
+        "location": "California",
+        "age": 29,
+        "comment": "I love how gentle the bellicon is on my joints while providing an intense workout."
+      },
+      {
+        "name": "Michael S.",
+        "location": "Texas",
+        "age": 35,
+        "comment": "The quality and design of the bellicon rebounder are top-notch; highly recommend it!"
+      }
+    ],
+    "promotions": [
+      {
+        "title": "Refocus, Rebound, Repeat - 10% Off",
+        "discount": "10% OFF SITEWIDE",
+        "details": "From January 27th to February 10th, get 10% off your trampoline or accessory purchase."
+      }
+    ],
+    "contact_information": {
+      "address": "bellicon USA LLC, 651 W Washington Blvd, Suite 101, Chicago, IL 60661",
+      "phone": "(312) 720-1116",
+      "email": "info@bellicon.com"
+    },
+    "social_media": [
+      {
+        "platform": "Facebook",
+        "url": "https://www.facebook.com/bellicon.USA/"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://www.instagram.com/bellicon.usa/"
+      },
+      {
+        "platform": "YouTube",
+        "url": "https://www.youtube.com/user/belliconusa"
+      }
+    ],
+    "additional_info": {
+      "founded": 2003,
+      "unique_feature": "Pioneered customized bungee cords for mini-trampoline suspension, enhancing fitness and therapeutic uses."
+    }
+  }
+  

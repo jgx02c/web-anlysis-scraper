@@ -1,0 +1,73 @@
+{
+    "business_id": "5",
+    "name": "Rebound Fitness",
+    "website": "https://rebound.fitness/en-us/",
+    "description": "Rebound Fitness, established in 2007, collaborates with top designers and manufacturers to offer high-quality rebounders and fitness trampolines. Their products are crafted from premium materials and built to the highest standards, delivering exceptional health and fitness benefits with every bounce.",
+    "products": [
+      {
+        "name": "Fit Bounce Pro II Bungee Sprung Rebounder Trampoline",
+        "description": "A premium bungee-sprung rebounder designed for a quiet, low-impact workout, featuring a foldable design for easy storage.",
+        "url": "https://rebound.fitness/en-us/product/fit-bounce-pro-ii-bungee-sprung-rebounder-trampoline/"
+      },
+      {
+        "name": "Maximus Pro Rebounder Mini Trampoline",
+        "description": "A professional-grade, metal-sprung mini trampoline suitable for high-intensity workouts, including resistance bands and a stability bar.",
+        "url": "https://rebound.fitness/en-us/product/maximus-pro-rebounder-mini-trampoline/"
+      },
+      {
+        "name": "Fit Bounce Pro XL Bungee Sprung Rebounder",
+        "description": "An extra-large bungee-sprung rebounder offering a larger jumping area for varied workouts, with a foldable design for convenience.",
+        "url": "https://rebound.fitness/en-us/product/fit-bounce-pro-xl-bungee-sprung-rebounder/"
+      }
+    ],
+    "benefits": [
+      "Low-impact cardiovascular exercise",
+      "Improved balance and strength",
+      "Enhanced coordination and flexibility",
+      "Stress relief and increased energy levels"
+    ],
+    "customer_reviews": [
+      {
+        "name": "Sarah M.",
+        "location": "United States",
+        "age": 34,
+        "comment": "The Fit Bounce Pro II is incredibly sturdy and provides a smooth, silent bounce. It's become a staple in my daily workouts."
+      },
+      {
+        "name": "James T.",
+        "location": "Canada",
+        "age": 45,
+        "comment": "I love the Maximus Pro Rebounder! The added resistance bands and stability bar make for a versatile and challenging workout."
+      },
+      {
+        "name": "Emily R.",
+        "location": "United Kingdom",
+        "age": 29,
+        "comment": "The Fit Bounce Pro XL offers ample space for a variety of exercises. It's well-built and easy to fold away when not in use."
+      }
+    ],
+    "promotions": [
+      {
+        "title": "Rebounding Retreats 2025",
+        "discount": "25% Early Bird Discount",
+        "details": "Register your interest now for our 2025 Rebounding Retreats and receive a 25% early bird discount. Spots are limited, so don’t miss out!"
+      }
+    ],
+    "contact_information": {
+      "address": "Not specified",
+      "phone": "Not specified",
+      "email": "service@rebound.fitness"
+    },
+    "social_media": [
+      {
+        "platform": "YouTube",
+        "url": "https://www.youtube.com/@ReboundFitness"
+      }
+    ],
+    "additional_info": {
+      "warranty": "Free warranty on all rebounders",
+      "shipping": "Ships within 24 hours",
+      "price_guarantee": "Lowest price guaranteed or contact us"
+    }
+  }
+  

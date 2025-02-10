@@ -1,0 +1,80 @@
+{
+    "business_id": "4",
+    "name": "BCAN",
+    "website": "https://bcantrampolines.com/",
+    "description": "BCAN specializes in fitness trampolines designed for home exercise, offering foldable and easy-to-store models that cater to various fitness levels. Their products emphasize durability, safety, and user-friendly design, making them suitable for both adults and children.",
+    "products": [
+      {
+        "name": "BCAN 40\" Foldable Mini Trampoline",
+        "description": "A 40-inch foldable mini trampoline with a light green arch leg design, supporting up to 450 lbs. Features 36 built-in automatic training programs and is easy to fold and store.",
+        "url": "https://bcantrampolines.com/"
+      },
+      {
+        "name": "BCAN 48\" Foldable Mini Trampoline",
+        "description": "A 48-inch foldable fitness rebounder with an adjustable foam handle, supporting up to 440 lbs. Ideal for both adults and children seeking a full-body workout.",
+        "url": "https://bcantrampolines.com/"
+      },
+      {
+        "name": "BCAN 36\" Kids Trampoline",
+        "description": "A 36-inch trampoline designed specifically for children, featuring a safety handlebar and a sturdy frame to ensure a safe and fun jumping experience.",
+        "url": "https://bcantrampolines.com/"
+      }
+    ],
+    "benefits": [
+      "Low-impact cardiovascular exercise",
+      "Improved balance and strength",
+      "Enhanced coordination and flexibility",
+      "Space-saving design for home use"
+    ],
+    "customer_reviews": [
+      {
+        "name": "Beth J.",
+        "location": "United States",
+        "age": 64,
+        "comment": "After the first week of using this, I am feeling more in shape already. My 80-year-old hubby is using it too."
+      },
+      {
+        "name": "A. Whoever",
+        "location": "United States",
+        "age": 45,
+        "comment": "It's quiet and has a perfect bounce. I can really get into it. 100% recommend."
+      },
+      {
+        "name": "Dr. S",
+        "location": "United States",
+        "age": 75,
+        "comment": "It's the right size, with plenty of space for jumping around. I'm glad I got the bar but you don't have to use it if you're not as clumsy as I am."
+      }
+    ],
+    "promotions": [
+      {
+        "title": "Fast & Free Shipping",
+        "discount": "Free Shipping",
+        "details": "Fast and free shipping from local warehouses. 30-day money-back guarantee and lifetime official tech-support."
+      }
+    ],
+    "contact_information": {
+      "address": "Not specified",
+      "phone": "Not specified",
+      "email": "Not specified"
+    },
+    "social_media": [
+      {
+        "platform": "Facebook",
+        "url": "https://www.facebook.com/BcanTrampolines/"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://www.instagram.com/bcanfitness/"
+      },
+      {
+        "platform": "YouTube",
+        "url": "https://www.youtube.com/channel/UC8QZ1gk5Y6Y8Q8Y8Q8Y8Q8Q"
+      }
+    ],
+    "additional_info": {
+      "warranty": "Lifetime official tech-support",
+      "return_policy": "30-day money-back guarantee"
+    }
+  }
+  

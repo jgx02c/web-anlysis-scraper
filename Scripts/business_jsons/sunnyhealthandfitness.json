@@ -1,0 +1,80 @@
+{
+    "business_id": "6",
+    "name": "Sunny Health & Fitness",
+    "website": "https://sunnyhealthfitness.com/",
+    "description": "Sunny Health & Fitness is a premier distributor and importer of high-quality health and fitness products, offering a wide array of home gym equipment for both home users and elite fitness professionals.",
+    "products": [
+      {
+        "name": "SF-T4400 Folding Treadmill",
+        "description": "A foldable treadmill designed for small spaces, featuring a running belt over 4 feet long and 15.5 inches wide, 15-way adjustable incline, pulse readers, Bluetooth connectivity to the SunnyFit app, and a hydraulic bar for soft drop when unfolding.",
+        "url": "https://sunnyhealthfitness.com/products/sunny-health-fitness-treadmill-sf-t4400"
+      },
+      {
+        "name": "SF-RW5515 Magnetic Rowing Machine",
+        "description": "A magnetic rowing machine offering eight levels of resistance, a large LCD console, and a foldable design for easy storage.",
+        "url": "https://sunnyhealthfitness.com/products/sf-rw5515-magnetic-rowing-machine"
+      },
+      {
+        "name": "SF-B1002C Chain Drive Indoor Cycling Trainer",
+        "description": "An indoor cycling bike featuring a 49 lb flywheel, adjustable resistance, and a heavy-duty steel frame for stability during intense workouts.",
+        "url": "https://sunnyhealthfitness.com/products/sf-b1002c-chain-drive-indoor-cycling-trainer"
+      }
+    ],
+    "benefits": [
+      "Wide range of affordable fitness equipment",
+      "Space-saving designs suitable for home use",
+      "Products cater to various fitness levels and goals",
+      "Access to the SunnyFit app with on-demand workouts"
+    ],
+    "customer_reviews": [
+      {
+        "name": "John D.",
+        "location": "United States",
+        "age": 42,
+        "comment": "The SF-T4400 treadmill is perfect for my small apartment. It's sturdy, easy to fold, and offers a great workout."
+      },
+      {
+        "name": "Emily R.",
+        "location": "Canada",
+        "age": 29,
+        "comment": "I love the SF-RW5515 rowing machine. It's smooth, quiet, and provides a challenging workout."
+      },
+      {
+        "name": "Michael S.",
+        "location": "United States",
+        "age": 35,
+        "comment": "The SF-B1002C cycling bike is solid and gives a gym-quality experience at home."
+      }
+    ],
+    "promotions": [
+      {
+        "title": "Valentine's Day Deals",
+        "discount": "5% Off",
+        "details": "Get 5% off on select fitness equipment during our Valentine's Day promotion."
+      }
+    ],
+    "contact_information": {
+      "address": "Not specified",
+      "phone": "1-877-90SUNNY",
+      "email": "Not specified"
+    },
+    "social_media": [
+      {
+        "platform": "Facebook",
+        "url": "https://www.facebook.com/SunnyHealthFitness/"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://www.instagram.com/sunnyhealthfitness/"
+      },
+      {
+        "platform": "YouTube",
+        "url": "https://www.youtube.com/user/SunnyHealthFitness"
+      }
+    ],
+    "additional_info": {
+      "warranty": "Warranty details vary by product; refer to individual product pages for specific information.",
+      "return_policy": "30-day money-back guarantee on most products; see website for details."
+    }
+  }
+  

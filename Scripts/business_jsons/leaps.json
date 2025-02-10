@@ -1,0 +1,73 @@
+{
+    "business_id": "1",
+    "name": "Leaps and Rebounds",
+    "website": "https://leapsandrebounds.com/",
+    "description": "Leaps and Rebounds specializes in providing high-quality mini fitness trampolines, known as rebounders, designed for low-impact cardiovascular exercise. Their products are built with durable materials, including bungee cords instead of springs, to ensure a safer, quieter, and more effective workout experience.",
+    "products": [
+      {
+        "name": "Mini Fitness Trampoline",
+        "description": "A rebounder made from super strong steel, suitable for both fun and fitness goals.",
+        "url": "https://leapsandrebounds.com/"
+      },
+      {
+        "name": "Trampoline Handle Bar",
+        "description": "An attachable stabilizer bar that enhances the trampoline workout by providing additional support.",
+        "url": "https://leapsandrebounds.com/"
+      },
+      {
+        "name": "Limited American Edition",
+        "description": "A premium, pre-assembled rebounder offering maximum surface area for an enhanced rebounding experience.",
+        "url": "https://leapsandrebounds.com/"
+      }
+    ],
+    "benefits": [
+      "Low-impact cardiovascular exercise",
+      "Improved balance and strength",
+      "Enhanced coordination and flexibility",
+      "Fun and engaging workout"
+    ],
+    "customer_reviews": [
+      {
+        "name": "Benjamin S.",
+        "location": "California",
+        "age": 35,
+        "comment": "I have done my research and this brand is by far the best rebounder out there on every level."
+      },
+      {
+        "name": "Shelley S.",
+        "location": "Utah",
+        "age": 55,
+        "comment": "Great for all ages—I highly recommend it!"
+      },
+      {
+        "name": "Lindsay R.",
+        "location": "Texas",
+        "age": 33,
+        "comment": "I love this rebounder! This bungee rebounder is like a dream to my knees!"
+      }
+    ],
+    "promotions": [
+      {
+        "title": "Valentine's Sale",
+        "discount": "10% OFF SITEWIDE",
+        "details": "Free shipping within the US in 2-6 business days, 30-day risk-free return policy, and lifetime warranty on rebounders and stabilizer bars."
+      }
+    ],
+    "contact_information": {
+      "address": "423 Paxinosa Ave, Easton, PA 18042-1619",
+      "phone": "(484) 373-9990",
+      "email": "info@leapsandrebounds.com"
+    },
+    "social_media": [
+      {
+        "platform": "Facebook",
+        "url": "https://www.facebook.com/leapsandrebounds/"
+      }
+    ],
+    "additional_info": {
+      "BBB_accreditation": "Leaps & Rebounds is NOT a BBB Accredited Business.",
+      "BBB_rating": "C+",
+      "BBB_reason_for_rating": "Failure to respond to 1 complaint(s) filed against business"
+    }
+  }
+  
