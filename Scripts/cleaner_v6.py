@@ -70,69 +70,51 @@ def extract_seo_and_content(file_path):
     }
 
 def generate_insights(seo_data):
-    """Generates SEO insights categorized into 'good' and 'bad'."""
-    insights = {"good": [], "bad": []}
+    """Generates SEO insights categorized into 'Immediate Action', 'Needs Attention', and 'Good Practice'."""
+    insights = {"Immediate Action Required": [], "Needs Attention": [], "Good Practice": []}
 
     # Extract SEO metadata
     meta_seo = seo_data["meta"]["SEO"]
     meta_tech = seo_data["meta"]["Technical"]
 
-    # Check for missing important meta tags
-    if meta_seo.get("description"):
-        insights["good"].append(f"Meta description found: '{meta_seo['description']}'.")
-    else:
-        insights["bad"].append("No meta description found. This can negatively impact SEO.")
-
-    if meta_seo.get("og:title"):
-        insights["good"].append(f"Open Graph title found: '{meta_seo['og:title']}'.")
-    else:
-        insights["bad"].append("No Open Graph title found. This may impact social media sharing.")
-
-    if meta_seo.get("canonical"):
-        insights["good"].append(f"Canonical tag found: '{meta_seo['canonical']}'.")
-    else:
-        insights["bad"].append("No canonical tag found. This could lead to duplicate content issues.")
-
+    # Immediate Action Required
     if "robots" in meta_seo and "noindex" in meta_seo["robots"]:
-        insights["bad"].append("Page is set to 'noindex' and will not be indexed by search engines.")
+        insights["Immediate Action Required"].append("Page is set to 'noindex' and will not be indexed by search engines. This must be corrected immediately.")
+    
+    if not meta_seo.get("description"):
+        insights["Immediate Action Required"].append("No meta description found. This is crucial for SEO and should be added immediately.")
+    
+    if not meta_seo.get("canonical"):
+        insights["Immediate Action Required"].append("No canonical tag found. This can lead to duplicate content issues, which needs to be fixed.")
 
-    # Check for heading structure
+    # Needs Attention
+    if not meta_seo.get("og:title"):
+        insights["Needs Attention"].append("No Open Graph title found. This may impact social media sharing and should be added.")
+    
+    if not seo_data["headings"]["h1"]:
+        insights["Needs Attention"].append("No H1 tag found. This is important for SEO and should be added.")
+
+    if len(seo_data["content"].split()) < 100:
+        insights["Needs Attention"].append(f"Page has only {len(seo_data['content'].split())} words. Consider adding more content for better SEO.")
+
+    # Good Practice
     if seo_data["headings"]["h1"]:
-        insights["good"].append(f"H1 tag found: '{seo_data['headings']['h1'][0]}'.")
-    else:
-        insights["bad"].append("No H1 tag found. Every page should have an H1 for SEO.")
+        insights["Good Practice"].append(f"H1 tag found: '{seo_data['headings']['h1'][0]}'. Good practice for SEO.")
 
-    # Check content length
-    word_count = len(seo_data["content"].split())
-    if word_count < 100:
-        insights["bad"].append(f"The page has only {word_count} words. This is too low for SEO.")
-    elif word_count > 1000:
-        insights["good"].append(f"The page has {word_count} words, which is ideal for in-depth SEO content.")
+    if seo_data["links"]["internal"]:
+        insights["Good Practice"].append(f"Page contains {len(seo_data['links']['internal'])} internal links. Good for internal linking SEO.")
 
-    # Check for internal and external links
-    if len(seo_data["links"]["internal"]) > 0:
-        insights["good"].append(f"Page contains {len(seo_data['links']['internal'])} internal links.")
-    else:
-        insights["bad"].append("No internal links found. Internal linking helps SEO and user navigation.")
-
-    if len(seo_data["links"]["external"]) > 0:
-        insights["good"].append(f"Page contains {len(seo_data['links']['external'])} external links.")
-    else:
-        insights["bad"].append("No external links found. Linking to high-authority sources is beneficial for SEO.")
-
-    # Check for missing alt text in images
-    missing_alt_images = [src for src, alt in seo_data["images"].items() if alt == "MISSING ALT TEXT"]
-    if missing_alt_images:
-        insights["bad"].append(f"{len(missing_alt_images)} images are missing alt text. This affects accessibility and SEO.")
-
-    # Check for structured data (JSON-LD)
+    if seo_data["images"]:
+        missing_alt_images = [src for src, alt in seo_data["images"].items() if alt == "MISSING ALT TEXT"]
+        if missing_alt_images:
+            insights["Needs Attention"].append(f"{len(missing_alt_images)} images are missing alt text. This should be corrected for better SEO and accessibility.")
+    
     if seo_data["structured_data"]:
-        insights["good"].append("Structured data (JSON-LD) found, which helps search engines understand the page.")
-    else:
-        insights["bad"].append("No structured data (JSON-LD) found. Adding structured data can improve SEO.")
+        insights["Good Practice"].append("Structured data (JSON-LD) found. This helps search engines understand the page.")
 
     seo_data["insights"] = insights
     return seo_data
+
 
 def extract_url_from_filename(file_name):
     """Converts a filename into a formatted website URL."""

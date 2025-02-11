@@ -6,12 +6,13 @@ from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain_openai import OpenAIEmbeddings
 from langchain.schema import Document
-from typing import List, Dict, Tuple
+from langchain_community.document_loaders import JSONLoader
+from typing import List, Dict, Tuple, Callable
 import time
 import warnings
 import urllib3
-import json
 from pathlib import Path
+import json
 
 # Suppress warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
@@ -52,100 +53,74 @@ def clean_filename(filename: str) -> str:
         return '_'.join(parts[1:])
     return filename
 
-def combine_headings(headings: Dict) -> str:
-    """Combine heading content into a single string."""
-    combined = []
-    for level, heads in headings.items():
-        for heading in heads:
-            combined.append(f"{level}: {heading}")
-    return "\n".join(combined)
-
-def get_meta_description(meta: Dict) -> str:
-    """Extract meta description from meta data."""
-    if 'SEO' in meta and 'description' in meta['SEO']:
-        return meta['SEO']['description']
-    return ""
-
-def extract_content_from_json(json_data: Dict) -> List[Dict]:
-    """Extract relevant content and metadata from JSON data."""
-    documents = []
-    
-    # Base metadata
-    base_metadata = {
-        'url': json_data.get('website_url', ''),
-        'title': json_data.get('title', ''),
-        'meta_description': get_meta_description(json_data.get('meta', {})),
+def extract_metadata(record: dict, metadata: dict) -> dict:
+    """Extract and combine metadata from the JSON record."""
+    # Base metadata from the record
+    extracted = {
+        'url': record.get('website_url', ''),
+        'title': record.get('title', ''),
     }
-
-    # Process main content
-    if 'content' in json_data:
-        main_content = json_data['content']
-        # Add headings as context to the content
-        if 'headings' in json_data:
-            headings_text = combine_headings(json_data['headings'])
-            main_content = f"{headings_text}\n\n{main_content}"
-        
-        documents.append({
-            'content': main_content,
-            'metadata': {
-                **base_metadata,
-                'content_type': 'main_content'
-            }
+    
+    # Add SEO metadata if available
+    if 'meta' in record and 'SEO' in record['meta']:
+        seo = record['meta']['SEO']
+        extracted.update({
+            'description': seo.get('description', ''),
+            'og_title': seo.get('og:title', ''),
+            'og_description': seo.get('og:description', '')
         })
+    
+    # Combine with existing metadata
+    return {**metadata, **extracted}
 
-    # Process meta information
-    if 'meta' in json_data:
-        meta_content = []
-        if 'SEO' in json_data['meta']:
-            for key, value in json_data['meta']['SEO'].items():
-                if isinstance(value, str):
-                    meta_content.append(f"{key}: {value}")
-        
-        if meta_content:
-            documents.append({
-                'content': '\n'.join(meta_content),
-                'metadata': {
-                    **base_metadata,
-                    'content_type': 'meta_seo'
-                }
-            })
-
-    # Process customer testimonials (if they exist in the content)
-    content = json_data.get('content', '')
-    testimonials = [s for s in content.split('"') if s.strip() and s.strip().startswith('I ') or s.strip().startswith('Great')]
-    if testimonials:
-        documents.append({
-            'content': '\n'.join(testimonials),
-            'metadata': {
-                **base_metadata,
-                'content_type': 'testimonials'
-            }
-        })
-
-    return documents
+def format_content(record: dict) -> str:
+    """Format the content from the JSON record."""
+    content_parts = []
+    
+    # Add headings in a structured way
+    if 'headings' in record:
+        for level, heads in sorted(record['headings'].items()):
+            for heading in heads:
+                if heading:
+                    content_parts.append(f"{level}: {heading}")
+    
+    # Add main content
+    if 'content' in record:
+        content_parts.append(record['content'])
+    
+    return '\n\n'.join(content_parts)
 
 def process_file(file_path: str, text_splitter: RecursiveCharacterTextSplitter) -> List[Document]:
-    """Process a single JSON file."""
+    """Process a single JSON file using JSONLoader."""
     try:
-        # Read and parse JSON file
-        with open(file_path, 'r', encoding='utf-8') as file:
-            json_data = json.load(file)
+        # Create JSONLoader with custom jq-like schema and metadata function
+        loader = JSONLoader(
+            file_path=file_path,
+            jq_schema='.',  # Load entire JSON object
+            content_key=None,  # We'll format content in the metadata function
+            metadata_func=extract_metadata
+        )
         
-        # Extract content and metadata
-        documents = extract_content_from_json(json_data)
+        # Load the documents
+        documents = loader.load()
         
         split_docs = []
         for doc in documents:
-            splits = text_splitter.split_text(doc['content'])
+            # Format the content using our custom function
+            formatted_content = format_content(json.loads(doc.page_content))
             
-            print(f"\n=== SPLIT OUTPUT for {doc['metadata']['content_type']} ({len(splits)} chunks) ===")
+            # Split the formatted content
+            splits = text_splitter.split_text(formatted_content)
+            
+            print(f"\n=== SPLIT OUTPUT ({len(splits)} chunks) ===")
             for i, split in enumerate(splits[:2]):  # Print first 2 chunks as example
-                print(f"\nChunk {i+1}:\n{split}\n{'-'*50}")
+                print(f"\nChunk {i+1}:\n{split[:200]}...\n{'-'*50}")
             
+            # Create new documents with splits while preserving metadata
             for split in splits:
                 split_docs.append(Document(
                     page_content=split.strip(),
-                    metadata=doc['metadata']
+                    metadata=doc.metadata
                 ))
         
         return split_docs
@@ -163,7 +138,7 @@ def batch_upsert(vectordb: PineconeVectorStore, documents: List[Document], filen
         print(f"Upserting batch {i//batch_size + 1}/{(total_docs + batch_size - 1)//batch_size} "
               f"({len(batch)} documents)")
         
-        # Add filename to existing metadata
+        # Add source file to metadata
         for doc in batch:
             doc.metadata['source_file'] = clean_name
         
@@ -189,7 +164,6 @@ def create_embeddings(json_folder: str, persist_directory: str) -> Tuple[int, Li
             "! ",        # Exclamations
             "? ",        # Questions
             ", ",        # Phrases
-            " ",        # Words
         ],
         keep_separator=True
     )
@@ -198,7 +172,7 @@ def create_embeddings(json_folder: str, persist_directory: str) -> Tuple[int, Li
     total_chunks = 0
 
     # Setup Pinecone index
-    index_name = "leaps"
+    index_name = "leapsjson"
     is_new_index = ensure_index_exists(pc, index_name)
     
     if is_new_index:
