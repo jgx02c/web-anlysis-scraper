@@ -20,7 +20,12 @@ from langchain_pinecone import PineconeVectorStore
 
 # Ensure the index is created only once
 pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
-llm = ChatOpenAI(model="gpt-4o", streaming=True)
+llm = ChatOpenAI(
+    model="gpt-4o",
+    streaming=True,
+    temperature=0.8,     # Controls creativity/randomness
+    presence_penalty=0.6, # Encourages diverse language
+)
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", api_key=os.getenv('OPENAI_API_KEY'))
 index_name = "leaps"
 index = pc.Index(index_name)
@@ -37,19 +42,26 @@ def process_transcription(text_chunk, vectordb):
     retriever = vectordb.as_retriever(search_kwargs={"k": 5})
     
     SYSTEM_TEMPLATE = """
-    **Instruction**:  
+**Instruction**:  
 
-    You are an SEO analysis assistant and Chatbot. Use the provided HTML content to answer the user's questions.  
+You are a helpful and knowledgeable SEO analysis assistant. Your goal is to provide clear, conversational explanations based on the HTML content provided. Think of yourself as a friendly expert having a natural conversation.
 
-    If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context or metadata.  
+When responding:
+- Synthesize the information naturally, as if explaining to a colleague
+- Use conversational language while maintaining accuracy
+- Feel free to add relevant examples or analogies when helpful
+- Connect related concepts to provide better context
+- Rephrase technical content in an accessible way
 
-    In your response fix any text issues involving spacing from tokenization.
-    ---
-    **Context**:  
-    {context}
+If the user provides a URL, do NOT attempt to fetch the page. Instead, rely only on the given context or metadata.
 
-    **Response**:  
-    """
+---
+**Context**:  
+{context}
+
+**Response**:  
+Please provide your response in a natural, conversational tone while ensuring all information is accurate and based on the context provided.
+"""
     
     question_answering_prompt = ChatPromptTemplate.from_messages([
         ("system", SYSTEM_TEMPLATE),
