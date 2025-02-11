@@ -1,0 +1,47 @@
+{
+    "website_url": "https:///Users/joshuagoodman/Documents/GitHub/web-anlysis-scraper/Scripts/leapsPagesDirty/leapsandrebounds.trysaral.com/",
+    "title": "Apply to be an Affiliate",
+    "meta": {
+        "SEO": {},
+        "Technical": {
+            "viewport": "width=device-width, initial-scale=1.0"
+        },
+        "Social Media": {}
+    },
+    "links": {
+        "internal": [],
+        "external": [
+            "https://getsaral.com"
+        ]
+    },
+    "headings": {
+        "h1": [
+            "Apply to be an Affiliate"
+        ],
+        "h2": [],
+        "h3": [],
+        "h4": [],
+        "h5": [],
+        "h6": []
+    },
+    "images": {
+        "https://saral-docs-prod.s3.amazonaws.com/256574412_1497070683999659_1677799881149492880_n.jpg%7CCVBPDjGQZ5yRK4P4racnk": "left banner",
+        "https://saral-docs-prod.s3.amazonaws.com/Inverted%20final.%20png.png%7CtWB5QE1wFvTTT6KRPrljh": "logo",
+        "/assets/powered-by-saral-3df85ef5.svg": "logo"
+    },
+    "structured_data": [],
+    "content": "We're looking for amazing people to partner with, like you! Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up! Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up!  Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up!  Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up! Sign me up! ",
+    "insights": {
+        "Immediate Action Required": [
+            "No meta description found. This is crucial for SEO and should be added immediately.",
+            "No canonical tag found. This can lead to duplicate content issues, which needs to be fixed."
+        ],
+        "Needs Attention": [
+            "No Open Graph title found. This may impact social media sharing and should be added.",
+            "Page has only 85 words. Consider adding more content for better SEO."
+        ],
+        "Good Practice": [
+            "H1 tag found: 'Apply to be an Affiliate'. Good practice for SEO."
+        ]
+    }
+}
