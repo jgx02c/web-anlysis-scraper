@@ -1,0 +1,67 @@
+{
+    "website_url": "https:///Users/joshuagoodman/Documents/GitHub/web-anlysis-scraper/Scripts/leapsPagesDirty/leapsandrebounds.trysaral.com/",
+    "title": "Apply to be an Affiliate",
+    "meta": {
+        "SEO": {},
+        "Technical": {
+            "charset": "UTF-8",
+            "viewport": "width=device-width, initial-scale=1.0"
+        },
+        "Social Media": {}
+    },
+    "links": {
+        "internal": [],
+        "external": [
+            "https://getsaral.com"
+        ]
+    },
+    "headings": {
+        "h1": [
+            "Apply to be an Affiliate"
+        ],
+        "h2": [],
+        "h3": [],
+        "h4": [],
+        "h5": [],
+        "h6": []
+    },
+    "images": {
+        "https://saral-docs-prod.s3.amazonaws.com/256574412_1497070683999659_1677799881149492880_n.jpg%7CCVBPDjGQZ5yRK4P4racnk": {
+            "alt": "left banner",
+            "width": "",
+            "height": ""
+        },
+        "https://saral-docs-prod.s3.amazonaws.com/Inverted%20final.%20png.png%7CtWB5QE1wFvTTT6KRPrljh": {
+            "alt": "logo",
+            "width": "",
+            "height": ""
+        },
+        "/assets/powered-by-saral-3df85ef5.svg": {
+            "alt": "logo",
+            "width": "160",
+            "height": ""
+        }
+    },
+    "structured_data": [],
+    "content": "We're looking for amazing people to partner with, like you! Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up! Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up!  Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up!  Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up! Sign me up! ",
+    "html_lang": "en",
+    "insights": {
+        "Immediate Action Required": [
+            "No meta description found. This is crucial for SEO.",
+            "URL contains special characters. Use only letters, numbers, and hyphens."
+        ],
+        "Needs Attention": [
+            "URL contains uppercase letters. URLs should be lowercase.",
+            "No canonical tag found. Consider adding one to prevent duplicate content issues.",
+            "Image missing width/height attributes: https://saral-docs-prod.s3.amazonaws.com/256574412_1497070683999659_1677799881149492880_n.jpg%7CCVBPDjGQZ5yRK4P4racnk",
+            "Image missing width/height attributes: https://saral-docs-prod.s3.amazonaws.com/Inverted%20final.%20png.png%7CtWB5QE1wFvTTT6KRPrljh",
+            "Image missing width/height attributes: /assets/powered-by-saral-3df85ef5.svg",
+            "No structured data (JSON-LD) found. Consider adding schema markup.",
+            "No internal links found. Consider adding some for better site structure."
+        ],
+        "Good Practice": [
+            "Title tag is present and within recommended length.",
+            "Page has exactly one H1 tag."
+        ]
+    }
+}
