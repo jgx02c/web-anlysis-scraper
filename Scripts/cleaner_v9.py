@@ -14,7 +14,7 @@ folder_path = os.path.join(os.getcwd(), folder_name)
 # Ask for the output folder name where results will be saved
 output_folder = input("Enter the output folder name (where results will be saved): ").strip()
 output_path = os.path.join(os.getcwd(), output_folder)
-os.makedirs(output_path, exist_ok=True)  # Create output folder if it doesn't exist
+os.makedirs(output_path, exist_ok=True)
 
 def extract_seo_and_content(file_path):
     """Extracts metadata, links, headings, images, and content from an HTML file."""
@@ -55,8 +55,8 @@ def extract_seo_and_content(file_path):
 
     # Extract all links
     links = [link.get('href') for link in soup.find_all('a', href=True)]
-    internal_links = [link for link in links if link and (link.startswith("/") or "leapsandrebounds.com" in link)]
-    external_links = [link for link in links if link and "leapsandrebounds.com" not in link and not link.startswith("/")]
+    internal_links = [link for link in links if link and (link.startswith("/") or "domain.com" in link)]
+    external_links = [link for link in links if link and "domain.com" not in link and not link.startswith("/")]
 
     # Extract headings by level
     headings = {f"h{i}": [h.get_text(strip=True) for h in soup.find_all(f"h{i}")] for i in range(1, 7)}
@@ -66,10 +66,13 @@ def extract_seo_and_content(file_path):
     for img in soup.find_all("img"):
         src = img.get("src", "")
         alt = img.get("alt", "")
+        width = img.get("width", "")
+        height = img.get("height", "")
         images[src] = {
             "alt": alt if alt else "MISSING ALT TEXT",
-            "width": img.get("width", ""),
-            "height": img.get("height", "")
+            "width": width,
+            "height": height,
+            "lazy_loading": img.get("loading") == "lazy"
         }
 
     # Extract structured data (JSON-LD)
@@ -82,9 +85,17 @@ def extract_seo_and_content(file_path):
             json_ld_scripts.append({"error": "Invalid JSON-LD"})
 
     # Extract text content
-    paragraphs = [p.get_text(strip=True) for p in soup.find_all('p')]
-    divs = [div.get_text(separator=' ', strip=True) for div in soup.find_all(['div', 'section', 'article'])]
-    cleaned_content = ' '.join(paragraphs + divs)
+    text_content = soup.get_text(separator=' ', strip=True)
+    word_count = len(text_content.split())
+
+    # Check for frames and iframes
+    frames = soup.find_all(['frame', 'iframe'])
+    
+    # Check for login forms
+    login_forms = bool(soup.find('form', {'type': 'login'}) or soup.find('input', {'type': 'password'}))
+
+    # Check for JavaScript-dependent content
+    js_content = soup.find_all('div', {'data-js-content': True})
 
     return {
         "website_url": extract_url_from_filename(file_path),
@@ -97,13 +108,21 @@ def extract_seo_and_content(file_path):
         "headings": headings,
         "images": images,
         "structured_data": json_ld_scripts,
-        "content": cleaned_content,
+        "content": text_content,
+        "word_count": word_count,
+        "frames": len(frames),
+        "requires_login": login_forms,
+        "js_dependent_content": len(js_content),
         "html_lang": soup.find('html').get('lang', '')
     }
 
 def generate_insights(seo_data):
     """Generates SEO insights based on technical SEO requirements."""
-    insights = {"Immediate Action Required": [], "Needs Attention": [], "Good Practice": []}
+    insights = {
+        "Immediate Action Required": [],
+        "Needs Attention": [],
+        "Good Practice": []
+    }
 
     # Title Checks
     if not seo_data["title"] or seo_data["title"] == "No Title":
@@ -115,87 +134,74 @@ def generate_insights(seo_data):
 
     # Meta Description Checks
     meta_seo = seo_data["meta"]["SEO"]
+    meta_tech = seo_data["meta"]["Technical"]
+    
     if not meta_seo.get("description"):
         insights["Immediate Action Required"].append("No meta description found. This is crucial for SEO.")
     elif len(meta_seo.get("description", "")) > 160:
         insights["Needs Attention"].append("Meta description exceeds 160 characters. Consider shortening it.")
-    else:
-        insights["Good Practice"].append("Meta description is present and within recommended length.")
+    
+    # Mobile Responsiveness Check
+    if not meta_tech.get("viewport"):
+        insights["Needs Attention"].append("Missing viewport meta tag. Required for mobile-first indexing.")
 
-    # URL Structure Checks
-    url = seo_data["website_url"]
-# Extract just the path portion after the domain
-    path = re.sub(r'^https?://[^/]+', '', url)
-    path = re.sub(r'\.com/', '', path)
+    # Content Length Check
+    if seo_data["word_count"] < 300:
+        insights["Needs Attention"].append(f"Page contains only {seo_data['word_count']} words. Consider adding more quality content.")
 
-    if re.search(r'[A-Z]', path):
-        insights["Needs Attention"].append("URL path contains uppercase letters. URLs should be lowercase.")
-    if re.search(r'[\s]', path):
-        insights["Immediate Action Required"].append("URL path contains spaces. Use hyphens instead.")
-    if re.search(r'[^a-zA-Z0-9\-/]', path):  # Removed underscore and dot from prohibited characters
-        insights["Immediate Action Required"].append("URL path contains special characters. Use only letters, numbers, and hyphens.")
+    # Robots Meta Tag Check
+    robots_content = meta_seo.get("robots", "")
+    if "noindex" in robots_content or "nofollow" in robots_content:
+        insights["Immediate Action Required"].append("Robots meta tag is preventing indexing or following links.")
+
+    # Frame Usage Check
+    if seo_data["frames"] > 0:
+        insights["Needs Attention"].append(f"Found {seo_data['frames']} frames/iframes. Ensure important content isn't hidden in frames.")
+
+    # Login Requirement Check
+    if seo_data["requires_login"]:
+        insights["Needs Attention"].append("Page may require login to access. This could prevent Google from crawling content.")
+
+    # JavaScript Dependency Check
+    if seo_data["js_dependent_content"] > 0:
+        insights["Needs Attention"].append(f"Found {seo_data['js_dependent_content']} elements that require JavaScript. Ensure critical content is available without JavaScript.")
+
+    # Image Checks
+    missing_alt = sum(1 for img in seo_data["images"].values() if img["alt"] == "MISSING ALT TEXT")
+    missing_dimensions = sum(1 for img in seo_data["images"].values() if not img["width"] or not img["height"])
+    
+    if missing_alt > 0:
+        insights["Needs Attention"].append(f"{missing_alt} images missing alt text")
+    if missing_dimensions > 0:
+        insights["Needs Attention"].append(f"{missing_dimensions} images missing width/height attributes")
 
     # Language Declaration Check
     if not seo_data["html_lang"]:
         insights["Needs Attention"].append("Missing language declaration in <html> tag. Add lang attribute.")
 
-    # Heading Structure Checks
+    # Heading Structure Check
     if len(seo_data["headings"]["h1"]) == 0:
         insights["Immediate Action Required"].append("No H1 tag found. Each page should have exactly one H1.")
     elif len(seo_data["headings"]["h1"]) > 1:
         insights["Needs Attention"].append(f"Multiple H1 tags found ({len(seo_data['headings']['h1'])}). Use only one H1 per page.")
-    else:
-        insights["Good Practice"].append("Page has exactly one H1 tag.")
 
-    # Technical Meta Tags
-    meta_tech = seo_data["meta"]["Technical"]
-    if not meta_tech.get("viewport"):
-        insights["Needs Attention"].append("Missing viewport meta tag. Important for mobile responsiveness.")
-    if not meta_tech.get("charset"):
-        insights["Needs Attention"].append("Missing character encoding declaration. Add meta charset tag.")
-
-    # Canonical Tag Check
-    if not meta_seo.get("canonical"):
-        insights["Needs Attention"].append("No canonical tag found. Consider adding one to prevent duplicate content issues.")
-
-    # Image Checks
-    for src, img_data in seo_data["images"].items():
-        if not src or src.isspace():
-            insights["Immediate Action Required"].append("Found image with empty src attribute.")
-        if src.startswith('data:'):
-            insights["Needs Attention"].append("Found base64 encoded image. Use proper image files for better performance.")
-        if img_data["alt"] == "MISSING ALT TEXT":
-            insights["Needs Attention"].append(f"Image missing alt text: {src}")
-        if not img_data["width"] or not img_data["height"]:
-            insights["Needs Attention"].append(f"Image missing width/height attributes: {src}")
-
-    # Structured Data Validation
-    if not seo_data["structured_data"]:
-        insights["Needs Attention"].append("No structured data (JSON-LD) found. Consider adding schema markup.")
-    else:
-        for data in seo_data["structured_data"]:
-            if isinstance(data, dict) and data.get("error"):
-                insights["Immediate Action Required"].append("Invalid JSON-LD structured data found.")
-            elif not data.get("@context") or not data.get("@type"):
-                insights["Needs Attention"].append("Structured data missing required @context or @type properties.")
-
-    # Link Checks
-    total_internal = len(seo_data["links"]["internal"])
-    total_external = len(seo_data["links"]["external"])
+    # URL Structure Check (only checking the path portion)
+    url = seo_data["website_url"]
+    path = re.sub(r'^https?://[^/]+', '', url)
+    path = re.sub(r'\.com/', '', path)
     
-    if total_internal == 0:
-        insights["Needs Attention"].append("No internal links found. Consider adding some for better site structure.")
-    else:
-        insights["Good Practice"].append(f"Found {total_internal} internal links.")
+    if re.search(r'[A-Z]', path):
+        insights["Needs Attention"].append("URL path contains uppercase letters. URLs should be lowercase.")
+    if re.search(r'[\s]', path):
+        insights["Immediate Action Required"].append("URL path contains spaces. Use hyphens instead.")
 
-    seo_data["insights"] = insights
-    return seo_data
+    return insights
 
 def extract_url_from_filename(file_name):
     """Converts a filename into a formatted website URL."""
     base_url = file_name.replace("_", "/")
-    base_url = re.sub(r"(\.html)$", "", base_url)  # Remove the .html extension
-    base_url = re.sub(r"^.*?leapsandrebounds\.com", "leapsandrebounds.com", base_url)
+    base_url = re.sub(r"(\.html)$", "", base_url)
+    base_url = re.sub(r"^.*?domain\.com", "domain.com", base_url)
     return f"https://{base_url}"
 
 def write_seo_and_content_to_json(seo_data, output_file):
@@ -211,7 +217,8 @@ for file_name in os.listdir(folder_path):
             output_file = os.path.join(output_path, f"{file_name.rsplit('.', 1)[0]}.json")
 
             seo_data = extract_seo_and_content(input_file)
-            seo_data = generate_insights(seo_data)
+            insights = generate_insights(seo_data)
+            seo_data["insights"] = insights
             write_seo_and_content_to_json(seo_data, output_file)
 
             print(f"Processed {file_name} -> {output_file}")

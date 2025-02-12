@@ -1,0 +1,53 @@
+{
+    "title": {
+        "required": true,
+        "max_length": 60,
+        "messages": {
+            "missing": "Missing or empty <title> tag. Every page must have a unique title.",
+            "too_long": "Title length is {length} characters. Consider keeping it under 60 characters.",
+            "good": "Title tag is present and within recommended length."
+        },
+        "severity": "immediate"
+    },
+    "meta_description": {
+        "required": true,
+        "max_length": 160,
+        "messages": {
+            "missing": "No meta description found. This is crucial for SEO.",
+            "too_long": "Meta description exceeds 160 characters. Consider shortening it."
+        },
+        "severity": "immediate"
+    },
+    "url": {
+        "allowed_chars": "[a-z0-9\\-/]",
+        "path_only": true,
+        "rules": [
+            {
+                "pattern": "[A-Z]",
+                "message": "URL path contains uppercase letters. URLs should be lowercase.",
+                "severity": "warning"
+            },
+            {
+                "pattern": "[\\s]",
+                "message": "URL path contains spaces. Use hyphens instead.",
+                "severity": "immediate"
+            }
+        ]
+    },
+    "content": {
+        "min_words": 300,
+        "messages": {
+            "too_short": "Page contains only {word_count} words. Consider adding more quality content."
+        }
+    },
+    "headings": {
+        "h1": {
+            "required": true,
+            "max_count": 1,
+            "messages": {
+                "missing": "No H1 tag found. Each page should have exactly one H1.",
+                "too_many": "Multiple H1 tags found ({count}). Use only one H1 per page."
+            }
+        }
+    }
+}

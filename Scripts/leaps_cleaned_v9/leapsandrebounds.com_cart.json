@@ -1,0 +1,219 @@
+{
+    "website_url": "https:///Users/joshuagoodman/Documents/GitHub/web-anlysis-scraper/Scripts/leapsPagesDirty/leapsandrebounds.com/cart",
+    "title": "Your Shopping Cart",
+    "meta": {
+        "SEO": {
+            "og:type": "website",
+            "og:title": "Your Shopping Cart",
+            "og:url": "https://leapsandrebounds.com/cart",
+            "og:image": "http://leapsandrebounds.com/cdn/shop/t/319/assets/Logo_big.jpg?v=29916069122752871061738805061",
+            "og:image:secure_url": "https://leapsandrebounds.com/cdn/shop/t/319/assets/Logo_big.jpg?v=29916069122752871061738805061",
+            "og:site_name": "Leaps and Rebounds"
+        },
+        "Technical": {
+            "charset": "utf-8",
+            "google-site-verification": "LkPWYcwbv2LlDL1uRie0bQNKoUNKxz7wuNJ6AuQxxow",
+            "viewport": "width=device-width,initial-scale=1",
+            "theme-color": "#fca248",
+            "msvalidate.01": "3D459481FA7159D9FC5037E2B27CED49",
+            "facebook-domain-verification": "a5zudttz6wcvpr36p4n4nlbagbnbid",
+            "shopify-digital-wallet": "/12574773/digital_wallets/dialog",
+            "shopify-checkout-api-token": "4c00a0fb6e3e15c500f7ed73b1afafca"
+        },
+        "Social Media": {
+            "twitter:card": "summary"
+        }
+    },
+    "links": {
+        "internal": [
+            "/pages/faqs",
+            "/pages/contact-us",
+            "/",
+            "/cart",
+            "/products/bungee-rebounders-mini-trampoline",
+            "/products/american-tough-rebounder",
+            "/collections/accessories",
+            "/products/stability-bar",
+            "/collections/bungees",
+            "/collections/apparel",
+            "/collections/sale",
+            "/blogs/mini-trampoline-workouts",
+            "/pages/about-our-trampolines",
+            "/pages/benefits",
+            "/pages/comparisons",
+            "/pages/community",
+            "/products/bungee-rebounders-mini-trampoline#reviews",
+            "/cart",
+            "/products/bungee-rebounders-mini-trampoline",
+            "/cart/add?id=29979648897",
+            "/products/stability-bar",
+            "/cart/add?id=24322002881",
+            "/products/leaps-rebounds-socks",
+            "/cart/add?id=44930134212824",
+            "/products/the-leaps-rebounds-official-t-shirts-limited-time-only",
+            "/cart/add?id=18738397937760",
+            "/",
+            "/",
+            "/products/bungee-rebounders-mini-trampoline",
+            "/products/stability-bar",
+            "/products/bungees-for-leaps-rebounds",
+            "/products/the-leaps-rebounds-official-t-shirts-limited-time-only",
+            "/products/male-black-shorts",
+            "/products/leaps-rebounds-socks",
+            "/pages/contact-us",
+            "/pages/no-risk-money-back-guarantee",
+            "/pages/privacy-policy",
+            "/pages/terms-of-service",
+            "/pages/refund-policy",
+            "/pages/shipping-policy",
+            "/pages/faqs",
+            "/pages/about-our-trampolines",
+            "/pages/community",
+            "/pages/benefits",
+            "/pages/comparisons",
+            "/blogs/mini-trampoline-workouts",
+            "/blogs/news"
+        ],
+        "external": [
+            "https://leapsandrebounds.trysaral.com/",
+            "https://www.facebook.com/leapsandrebounds",
+            "https://www.youtube.com/channel/UCsifPtSR1H3zHxT_1Qbx9zg",
+            "https://www.instagram.com/leapsandrebounds",
+            "mailto:mailto:info@leapsandrebounds.com",
+            "tel:4843739990:"
+        ]
+    },
+    "headings": {
+        "h1": [
+            "Stability Bar Mismatch",
+            "Cart0 Items$0.00"
+        ],
+        "h2": [
+            "Products You Might Like",
+            "Fitness Rebounder and Mini Trampoline",
+            "Adjustable Handle Bar for Fitness Rebounder and Mini Trampolines",
+            "No-slip Grip Socks | For All Rebounders And Exercise Trampolines",
+            "Leaps & Rebounds Fitted Logo T-Shirt for Men & Women",
+            ""
+        ],
+        "h3": [],
+        "h4": [
+            "48 / Blue",
+            "40",
+            "Ankle / Green",
+            "Small / Mens Tank Top",
+            ""
+        ],
+        "h5": [],
+        "h6": []
+    },
+    "images": {
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/Leaps_Logo_Black.webp?v=51526969692263955181738805058": {
+            "alt": "Leaps and Rebounds home",
+            "width": "179",
+            "height": "50",
+            "lazy_loading": false
+        },
+        "https://cdn.shopify.com/s/files/1/1257/4773/files/leaps-and-rebounds-mini-trampoline-rebounder-blue.webp?v=1738291859": {
+            "alt": "Fitness Rebounder and Mini Trampoline",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "https://cdn.shopify.com/s/files/1/1257/4773/files/Stability_Bar_Front_Transparent.webp?v=1730939623": {
+            "alt": "Adjustable Handle Bar for Fitness Rebounder and Mini Trampolines",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "https://cdn.shopify.com/s/files/1/1257/4773/files/Untitleddesign_58.png?v=1722372580": {
+            "alt": "No-slip Grip Socks | For All Rebounders And Exercise Trampolines",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "https://cdn.shopify.com/s/files/1/1257/4773/products/IMG_6320.jpg?v=1626116461": {
+            "alt": "Leaps & Rebounds Fitted Logo T-Shirt for Men & Women",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/Chris_Footer.webp?v=21780929462962262561738805038": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/ImgCarousel1.webp?v=58557643627898599641738805052": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/ImgCarousel7Cowboy.webp?v=44163303508588380981738805053": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/ImageFooter5.webp?v=63031283098205936701738805051": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/ImgCarousel2.webp?v=95548975987330355151738805053": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/ImageFooter6.webp?v=143654504977963349991738805052": {
+            "alt": "MISSING ALT TEXT",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/Logo_big_light.png?v=154374516010887537751738805062": {
+            "alt": "Leaps and Rebounds",
+            "width": "232",
+            "height": "84",
+            "lazy_loading": false
+        },
+        "https://bat.bing.com/action/0?ti=187115521&Ver=2&mid=77d9dbd3-23d8-444c-b2a7-a2ddc571f2c6&bo=1&sid=2f797160e5b211ef8d4d0fce0763638f&vid=2f797280e5b211ef9ef4e5a2f735505b&vids=0&msclkid=N&pi=918639831&lg=en-US&sw=1512&sh=982&sc=30&nwd=1&tl=Your%20Shopping%20Cart&p=https%3A%2F%2Fleapsandrebounds.com%2Fcart&r=&lt=557&evt=pageLoad&sv=1&cdb=AQAQ&rn=701656": {
+            "alt": "MISSING ALT TEXT",
+            "width": "0",
+            "height": "0",
+            "lazy_loading": false
+        }
+    },
+    "structured_data": [],
+    "content": "Your Shopping Cart F.A.Q. Love at First Bounce – 10% Off with Promo Code VDAY10 ! Questions? | Contact Us Cart 0 Shopping Cart All Trampolines Original Trampolines American Tough Accessories All Accessories Stability Bar Bungees Apparel Sales Info Mini Trampoline Workouts About Us The Benefits Why Leaps? Community Reviews Cart 0 Shopping Cart Stability Bar Mismatch Oh no! Your stability bar doesn't match the size of your rebounder. Our stability bars are only compatible with the appropriate size. Continue Change Bar size for me ✕ Cart 0 Items $0.00 Products You Might Like Fitness Rebounder and Mini Trampoline 48 / Blue Add - $258.00 Adjustable Handle Bar for Fitness Rebounder and Mini Trampolines 40 Add - $79.00 No-slip Grip Socks | For All Rebounders And Exercise Trampolines Ankle / Green Add - $20.00 Leaps & Rebounds Fitted Logo T-Shirt for Men & Women Small / Mens Tank Top Add - $20.00 Subtotal $0.00 $0.00 Discount -$0.00 Shipping Free Total $0.00 Taxes & discount calculated at checkout. Special instructions for seller Copyright © 2025 Leaps and Rebounds Products Rebounders Stability Bars Bungees Shirts Shorts Socks Legal Contact Us Return Policy Privacy Policy Terms of Service Refund Policy Shipping Policy About / Pages FAQ About Our Trampolines Community Benefits Comparisons Mini Trampoline Workouts Blog Affiliate Facebook YouTube Instagram Email Phone",
+    "word_count": 219,
+    "frames": 5,
+    "requires_login": false,
+    "js_dependent_content": 0,
+    "html_lang": "en",
+    "insights": {
+        "Immediate Action Required": [
+            "No meta description found. This is crucial for SEO."
+        ],
+        "Needs Attention": [
+            "Page contains only 219 words. Consider adding more quality content.",
+            "Found 5 frames/iframes. Ensure important content isn't hidden in frames.",
+            "8 images missing alt text",
+            "11 images missing width/height attributes",
+            "Multiple H1 tags found (2). Use only one H1 per page.",
+            "URL path contains uppercase letters. URLs should be lowercase."
+        ],
+        "Good Practice": [
+            "Title tag is present and within recommended length."
+        ]
+    }
+}

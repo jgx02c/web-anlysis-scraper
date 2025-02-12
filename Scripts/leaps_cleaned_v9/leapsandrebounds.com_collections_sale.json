@@ -1,0 +1,266 @@
+{
+    "website_url": "https:///Users/joshuagoodman/Documents/GitHub/web-anlysis-scraper/Scripts/leapsPagesDirty/leapsandrebounds.com/collections/sale",
+    "title": "Shop our Sales and Bundles",
+    "meta": {
+        "SEO": {
+            "description": "Explore savings on popular Leaps &amp; Rebounds products. Visit this page for all sales, discounts, bundles, and deals, regardless of ongoing promotions.",
+            "og:type": "website",
+            "og:title": "Shop our Sales and Bundles",
+            "og:url": "https://leapsandrebounds.com/collections/sale",
+            "og:description": "Explore savings on popular Leaps &amp; Rebounds products. Visit this page for all sales, discounts, bundles, and deals, regardless of ongoing promotions.",
+            "og:image": "http://leapsandrebounds.com/cdn/shop/t/319/assets/Logo_big.jpg?v=29916069122752871061738805061",
+            "og:image:secure_url": "https://leapsandrebounds.com/cdn/shop/t/319/assets/Logo_big.jpg?v=29916069122752871061738805061",
+            "og:site_name": "Leaps and Rebounds"
+        },
+        "Technical": {
+            "charset": "utf-8",
+            "google-site-verification": "LkPWYcwbv2LlDL1uRie0bQNKoUNKxz7wuNJ6AuQxxow",
+            "viewport": "width=device-width,initial-scale=1",
+            "theme-color": "#fca248",
+            "msvalidate.01": "3D459481FA7159D9FC5037E2B27CED49",
+            "facebook-domain-verification": "a5zudttz6wcvpr36p4n4nlbagbnbid",
+            "shopify-digital-wallet": "/12574773/digital_wallets/dialog",
+            "shopify-requires-components": "true",
+            "shopify-checkout-api-token": "4c00a0fb6e3e15c500f7ed73b1afafca"
+        },
+        "Social Media": {
+            "twitter:card": "summary"
+        }
+    },
+    "links": {
+        "internal": [
+            "/pages/faqs",
+            "/pages/contact-us",
+            "/",
+            "/cart",
+            "/products/bungee-rebounders-mini-trampoline",
+            "/products/american-tough-rebounder",
+            "/collections/accessories",
+            "/products/stability-bar",
+            "/collections/bungees",
+            "/collections/apparel",
+            "/collections/sale",
+            "/blogs/mini-trampoline-workouts",
+            "/pages/about-our-trampolines",
+            "/pages/benefits",
+            "/pages/comparisons",
+            "/pages/community",
+            "/products/bungee-rebounders-mini-trampoline#reviews",
+            "/cart",
+            "/",
+            "/collections/sale",
+            "/products/valentine-bundle-fitness-rebounder",
+            "/products/48-fitness-trampoline-stabilizer-bar",
+            "/products/40-fitness-trampoline-stability-bar",
+            "/products/tough-pro-made-in-usa-bundle",
+            "/products/think-pink-bundle",
+            "/products/stability-bar",
+            "/products/furry-matt-cover",
+            "/products/bungees-for-leaps-rebounds",
+            "/products/softer-bungees",
+            "/products/leaps-rebounds-socks",
+            "/products/the-leaps-rebounds-official-t-shirts-limited-time-only",
+            "/products/small-sports-bra",
+            "/products/shirt",
+            "/products/sweatshirts",
+            "/products/shorts",
+            "/products/sweatpants",
+            "/",
+            "/",
+            "/products/bungee-rebounders-mini-trampoline",
+            "/products/stability-bar",
+            "/products/bungees-for-leaps-rebounds",
+            "/products/the-leaps-rebounds-official-t-shirts-limited-time-only",
+            "/products/male-black-shorts",
+            "/products/leaps-rebounds-socks",
+            "/pages/contact-us",
+            "/pages/no-risk-money-back-guarantee",
+            "/pages/privacy-policy",
+            "/pages/terms-of-service",
+            "/pages/refund-policy",
+            "/pages/shipping-policy",
+            "/pages/faqs",
+            "/pages/about-our-trampolines",
+            "/pages/community",
+            "/pages/benefits",
+            "/pages/comparisons",
+            "/blogs/mini-trampoline-workouts",
+            "/blogs/news"
+        ],
+        "external": [
+            "https://leapsandrebounds.trysaral.com/",
+            "https://www.facebook.com/leapsandrebounds",
+            "https://www.youtube.com/channel/UCsifPtSR1H3zHxT_1Qbx9zg",
+            "https://www.instagram.com/leapsandrebounds",
+            "mailto:mailto:info@leapsandrebounds.com",
+            "tel:4843739990:",
+            "https://leapsandrebounds.com/collections/sale",
+            "https://rebuyengine.com/?shop=leaps-rebounds.myshopify.com"
+        ]
+    },
+    "headings": {
+        "h1": [
+            "Shop our Sales and Bundles"
+        ],
+        "h2": [
+            "Valentine's Special - Fitness Rebounder Bundle",
+            "48\" Fitness Trampoline & Stability Bar",
+            "40\" Fitness Trampoline & Stability Bar",
+            "PRO Bundle | USA Rebounder Pack",
+            "Think Pink Bundle",
+            "Adjustable Handle Bar",
+            "Furry Mat Cover",
+            "Colorful Bungees",
+            "Premium Soft Bungee Upgrades",
+            "No-slip Grip Jumpsocks",
+            "Leaps and Rebounds Official Tank",
+            "High-Performance Sports Bra | Leaps and Rebounds",
+            "Workout Shirt",
+            "Sweatshirts",
+            "Women's Workout Shorts",
+            "Sweatpants",
+            "Your Cart"
+        ],
+        "h3": [],
+        "h4": [
+            "Your cart is empty!",
+            "You may also like"
+        ],
+        "h5": [],
+        "h6": []
+    },
+    "images": {
+        "//leapsandrebounds.com/cdn/shop/t/319/assets/Leaps_Logo_Black.webp?v=51526969692263955181738805058": {
+            "alt": "Leaps and Rebounds home",
+            "width": "179",
+            "height": "50",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/hugs_kisses_1.webp?v=1738790036": {
+            "alt": "Valentine's Special - Fitness Rebounder Bundle",
+            "width": "files/hugs_kisses_1.webp",
+            "height": "files/hugs_kisses_1.webp",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/L_R_Villa_Jiwa_100624_C2_2957.webp?v=1730494566": {
+            "alt": "48",
+            "width": "files/L_R_Villa_Jiwa_100624_C2_2957.webp",
+            "height": "files/L_R_Villa_Jiwa_100624_C2_2957.webp",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/L_R_Villa_Jiwa_100624_C2_2676_59971807-7948-4730-9fc2-0d2123507d1c.webp?v=1730495797": {
+            "alt": "40",
+            "width": "files/L_R_Villa_Jiwa_100624_C2_2676_59971807-7948-4730-9fc2-0d2123507d1c.webp",
+            "height": "files/L_R_Villa_Jiwa_100624_C2_2676_59971807-7948-4730-9fc2-0d2123507d1c.webp",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/PRO-TOUGH_BUNDLE_1_1.webp?v=1737669663": {
+            "alt": "PRO Bundle | USA Rebounder Pack",
+            "width": "files/PRO-TOUGH_BUNDLE_1_1.webp",
+            "height": "files/PRO-TOUGH_BUNDLE_1_1.webp",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/thinkpinkbundlecover.webp?v=1730540917": {
+            "alt": "Leaps & Rebounds think pink bundle banner",
+            "width": "files/thinkpinkbundlecover.webp",
+            "height": "files/thinkpinkbundlecover.webp",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled_design_35.png?format=pjpg&height=300&v=1728952544": {
+            "alt": "Adjustable Handle Bar for Fitness Rebounder and Mini Trampolines",
+            "width": "files/Untitled_design_35.png",
+            "height": "files/Untitled_design_35.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled__800_x_500_px___2.png?format=pjpg&height=300&v=1738354104": {
+            "alt": "Furry Mat Cover",
+            "width": "files/Untitled__800_x_500_px___2.png",
+            "height": "files/Untitled__800_x_500_px___2.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled_design_-_2024-11-15T203939.819.png?format=pjpg&height=300&v=1731721189": {
+            "alt": "Leaps and Rebounds Bungees | For All Rebounders Mini Trampolines bungees",
+            "width": "files/Untitled_design_-_2024-11-15T203939.819.png",
+            "height": "files/Untitled_design_-_2024-11-15T203939.819.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled_design_-_2024-11-15T202653.844.png?format=pjpg&height=300&v=1731720431": {
+            "alt": "Premium Soft Bungee Upgrades | Calibrate Your Bounce",
+            "width": "files/Untitled_design_-_2024-11-15T202653.844.png",
+            "height": "files/Untitled_design_-_2024-11-15T202653.844.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitleddesign_20.png?format=pjpg&height=300&v=1723010613": {
+            "alt": "No-slip Grip Socks | For All Rebounders And Exercise Trampolines",
+            "width": "files/Untitleddesign_20.png",
+            "height": "files/Untitleddesign_20.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled_design_36.png?format=pjpg&height=300&v=1728953236": {
+            "alt": "Leaps & Rebounds Fitted Logo T-Shirt for Men & Women",
+            "width": "files/Untitled_design_36.png",
+            "height": "files/Untitled_design_36.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/sportsBraFrontLogo.png?format=pjpg&height=300&v=1729798867": {
+            "alt": "front profile of sports bra with Leaps and Rebounds logo",
+            "width": "files/sportsBraFrontLogo.png",
+            "height": "files/sportsBraFrontLogo.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitleddesign_25.png?format=pjpg&height=300&v=1713497267": {
+            "alt": "Leaps and Rebounds Official Workout T-Shirt",
+            "width": "files/Untitleddesign_25.png",
+            "height": "files/Untitleddesign_25.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled_design_38_481865d3-cd47-49ad-9291-9400257d602a.png?format=pjpg&height=300&v=1728953630": {
+            "alt": "Leaps and Rebounds Sweatshirt",
+            "width": "files/Untitled_design_38_481865d3-cd47-49ad-9291-9400257d602a.png",
+            "height": "files/Untitled_design_38_481865d3-cd47-49ad-9291-9400257d602a.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitled_design_41.png?format=pjpg&height=300&v=1728954322": {
+            "alt": "Leaps and Rebounds Women's Workout Shorts",
+            "width": "files/Untitled_design_41.png",
+            "height": "files/Untitled_design_41.png",
+            "lazy_loading": false
+        },
+        "//leapsandrebounds.com/cdn/shop/files/Untitleddesign_35_ae879a45-8536-45f0-a602-5ca43d7c7780.png?format=pjpg&height=300&v=1728952316": {
+            "alt": "Leaps and Rebounds Sweatpants",
+            "width": "files/Untitleddesign_35_ae879a45-8536-45f0-a602-5ca43d7c7780.png",
+            "height": "files/Untitleddesign_35_ae879a45-8536-45f0-a602-5ca43d7c7780.png",
+            "lazy_loading": false
+        },
+        "": {
+            "alt": "Leaps and Rebounds",
+            "width": "232",
+            "height": "84",
+            "lazy_loading": false
+        },
+        "https://bat.bing.com/action/0?ti=187115521&Ver=2&mid=1623e15e-45ad-4480-b6b7-7a986fc34962&bo=1&sid=2f797160e5b211ef8d4d0fce0763638f&vid=2f797280e5b211ef9ef4e5a2f735505b&vids=0&msclkid=N&pi=918639831&lg=en-US&sw=1512&sh=982&sc=30&nwd=1&tl=Shop%20our%20Sales%20and%20Bundles&p=https%3A%2F%2Fleapsandrebounds.com%2Fcollections%2Fsale&r=&lt=729&evt=pageLoad&sv=1&cdb=AQAQ&rn=160153": {
+            "alt": "MISSING ALT TEXT",
+            "width": "0",
+            "height": "0",
+            "lazy_loading": false
+        }
+    },
+    "structured_data": [],
+    "content": "Shop our Sales and Bundles F.A.Q. Love at First Bounce – 10% Off with Promo Code VDAY10 ! Questions? | Contact Us Cart 0 Shopping Cart All Trampolines Original Trampolines American Tough Accessories All Accessories Stability Bar Bungees Apparel Sales Info Mini Trampoline Workouts About Us The Benefits Why Leaps? Community Reviews Cart 0 Shopping Cart Home Sale Shop our Sales and Bundles Explore savings on popular Leaps & Rebounds products. Visit this page for all sales, discounts, bundles, and deals, regardless of ongoing promotions. 10% off Valentine's Special - Fitness Rebounder Bundle $310-$360 $279-$324 💖 Valentine’s Fitness Pack 2025 – Rebounder, Stability Bar & Bungee Cords! 💪 Limited-time ends on Feb 16th. Bounce into fitness & love your workout! ❤️ 10% off 48\" Fitness Trampoline & Stability Bar $337 $303 Get the Ultimate Workout Bundle with our 48-inch Original Rebounder and stabilizer bar for balance and safety. Exercise like a professional from home comfort. 10% off 40\" Fitness Trampoline & Stability Bar $287 $258 Limited Space? Not a problem. Start working out with our 40-inch Original Rebounder and stabilizer bar for balance and safety at the beginning of your journey. 10% off PRO Bundle | USA Rebounder Pack $749 $674 Elevate your fitness journey with PRO Bundle comes with Tough Rebounder, Stability Bar, and Grip Socks. Built to last, and support the toughest. 10% off Think Pink Bundle $228-$280 $205-$252 This energizing bundle includes a pink rebounder and pink socks. Take advantage of the 10% off deal in this bundle by adding all in together. 21% off Payments Available Adjustable Handle Bar $100 $79 Enhance your balance and stability with the Leaps and Rebounds Stability Bar! Perfect support during rebounding workouts, it’s ideal for beginners, seniors, and fitness enthusiasts alike 25% off Furry Mat Cover $100 $75 Transform your rebounder into a cozy, stylish focal point with our Furry Mat Rebounder Cover! Add comfort and charm to your space when your trampoline is not in use. 43% off Colorful Bungees $35 $20-$23 Replace your stretched and lifeless bungees today with a new bungee set .  Pick your matching color or go wild. 34% off Premium Soft Bungee Upgrades $38 $25 Upgrade your bounce with our softer bungees! Available in White and Black, these softer bungees offer a gentler rebound. 33% off No-slip Grip Jumpsocks $30-$33 $20-$22 Rebound in style with our no-slip grip socks. These trendy socks are not only fashionable, but also functional. 20% off Leaps and Rebounds Official Tank $25 $20 Work Out in style with our Sweat Wicking Workout Shirts! 20% off High-Performance Sports Bra | Leaps and Rebounds $50 $40 Keep things held together with our high-impact sports bra! 20% off Workout Shirt $25 $20 Stay cool, comfortable, and stylish during your sweat sessions with this high-performance shirt. 20% off Sweatshirts $50 $40 Warm-up with our zip-up hoodie. Share your love for us while keeping warm with our fleece-lined Sweatsuit! 20% off Women's Workout Shorts $50 $40 Moisture-wicking shorts to stay cool! 20% off Sweatpants $50 $40 Keep your legs warm while you bounce with our fleece-lined sweatpants! Copyright © 2025 Leaps and Rebounds Products Rebounders Stability Bars Bungees Shirts Shorts Socks Legal Contact Us Return Policy Privacy Policy Terms of Service Refund Policy Shipping Policy About / Pages FAQ About Our Trampolines Community Benefits Comparisons Mini Trampoline Workouts Blog Affiliate Facebook YouTube Instagram Email Phone Your Cart Close Cart USE CODE \"VDAY10\" - GET 10% OFF Your cart is empty! Add your favorite items to your cart. Shop Now You may also like Powered by Rebuy Checkout → Continue Shopping",
+    "word_count": 596,
+    "frames": 5,
+    "requires_login": false,
+    "js_dependent_content": 0,
+    "html_lang": "en",
+    "insights": {
+        "Immediate Action Required": [],
+        "Needs Attention": [
+            "Found 5 frames/iframes. Ensure important content isn't hidden in frames.",
+            "1 images missing alt text",
+            "URL path contains uppercase letters. URLs should be lowercase."
+        ],
+        "Good Practice": [
+            "Title tag is present and within recommended length."
+        ]
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "website_url": "https:///Users/joshuagoodman/Documents/GitHub/web-anlysis-scraper/Scripts/leapsPagesDirty/leapsandrebounds.trysaral.com/",
+    "title": "Apply to be an Affiliate",
+    "meta": {
+        "SEO": {},
+        "Technical": {
+            "charset": "UTF-8",
+            "viewport": "width=device-width, initial-scale=1.0"
+        },
+        "Social Media": {}
+    },
+    "links": {
+        "internal": [],
+        "external": [
+            "https://getsaral.com"
+        ]
+    },
+    "headings": {
+        "h1": [
+            "Apply to be an Affiliate"
+        ],
+        "h2": [],
+        "h3": [],
+        "h4": [],
+        "h5": [],
+        "h6": []
+    },
+    "images": {
+        "https://saral-docs-prod.s3.amazonaws.com/256574412_1497070683999659_1677799881149492880_n.jpg%7CCVBPDjGQZ5yRK4P4racnk": {
+            "alt": "left banner",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "https://saral-docs-prod.s3.amazonaws.com/Inverted%20final.%20png.png%7CtWB5QE1wFvTTT6KRPrljh": {
+            "alt": "logo",
+            "width": "",
+            "height": "",
+            "lazy_loading": false
+        },
+        "/assets/powered-by-saral-3df85ef5.svg": {
+            "alt": "logo",
+            "width": "160",
+            "height": "",
+            "lazy_loading": false
+        }
+    },
+    "structured_data": [],
+    "content": "Apply to be an Affiliate Apply to be an Affiliate We're looking for amazing people to partner with, like you! Sign me up!",
+    "word_count": 23,
+    "frames": 0,
+    "requires_login": false,
+    "js_dependent_content": 0,
+    "html_lang": "en",
+    "insights": {
+        "Immediate Action Required": [
+            "No meta description found. This is crucial for SEO."
+        ],
+        "Needs Attention": [
+            "Page contains only 23 words. Consider adding more quality content.",
+            "3 images missing width/height attributes",
+            "URL path contains uppercase letters. URLs should be lowercase."
+        ],
+        "Good Practice": [
+            "Title tag is present and within recommended length."
+        ]
+    }
+}
