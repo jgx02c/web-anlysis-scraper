@@ -1,45 +1,54 @@
-### **📄 README.md**
-```md
-# Steps to Obtain SEO Data for Each Website and All Pages
+# 📄 README.md
 
-## 1. Start with the Main URL
+## Overview
+This repository contains the scripts and sandbox environment for obtaining and processing SEO data. It is **not** the main backend or frontend repository for this project.
+
+- **Frontend Repository:** [Insert Link Here]
+- **Backend Repository:** [Insert Link Here]
+- **Note:** The backend server is currently **not hosted** due to its requirement for multiple CPU cores, making it costly to maintain.
+
+---
+
+## Steps to Obtain SEO Data for Each Website and All Pages
+
+### 1. Start with the Main URL
 - Begin with the main URL of the website's home page.
 
-## 2. Prepare for Crawling
+### 2. Prepare for Crawling
 - Delete any existing `urls.json`.
 - Add the main URL to the `crawler.py` script.
 
-## 3. Run the Crawler
+### 3. Run the Crawler
 - Execute `crawler.py`.
 - Review the output in `urls.json`:
   - Clean any outliers and duplicates (e.g., `instagram.com`, `facebook.com`).
   - Manually `Cmd + Click` on links in the JSON to verify webpage validity.
 
-## 4. Prepare for Scraping
+### 4. Prepare for Scraping
 - Delete any existing folder named `downloaded_pages` to prevent contamination.
 
-## 5. Run the Scraper
+### 5. Run the Scraper
 - Execute `scraper.py`.
 - Review the output in the `downloaded_pages` folder:
   - Open each file in a web browser to confirm validity.
 
-## 6. Prepare for Cleaning
+### 6. Prepare for Cleaning
 - Delete any existing folder named `cleaned_pages` to prevent contamination.
 
-## 7. Run the Cleaner
+### 7. Run the Cleaner
 - Execute `cleaner_v2.py`.
 - Review the output in the `cleaned_pages` folder:
   - Open each file in a web browser to confirm validity.
 
-## 8. Upload to Vectorstore
+### 8. Upload to Vectorstore
 - Run `upsert_pages.py` to upload the cleaned pages to the vectorstore.
 
-## 9. Validate the Upload
+### 9. Validate the Upload
 - Run `rag_service.py` to verify that the new pages are successfully uploaded.
 
 ---
 
-## Create Vector DB ##
+## Create Vector DB
 - Run `rag_embeddings.py` to create the vectorDB and upsert all cleaned pages to the vectorstore.
 
 ---
@@ -111,15 +120,17 @@ deactivate
 
 ---
 
+## Necessary Scripts
 
-## Nessary Scripts ##
+| Script | Description |
+|---------|-------------|
+| `crawler.py` | Gets all URLs associated with the main URL |
+| `scraper.py` | Uses the URLs to scrape for the HTML content |
+| `cleaner.py` | Cleans up the HTML, moving to `.txt` after scraping |
+| `rag_upsert.py` | Adds documents to the VectorDB |
+| `chunker.py` | Chunks the text during upserting |
+| `rag_service.py` | Queries the VectorDB |
+| `rag_embeddings.py` | Creates the vectorstore and DB (**Only use if DB not created**) |
+| `rag_remove.py` | Removes documents from the VectorDB |
 
-crawler.py              # Gets all Url's associated with Main URL
-scraper.py              # Uses the Url's to scrape for the HTML content
-cleaner.py              # Clean up the HTML, moving to .txt after Scraping
-rag_upsert.py           # Adds Documents to the VectorDB 
-chunker.py              # Chunks the text during Upserting
-rag_service.py          # Query's the VectorDB
-
-rag_embeddings.py       # Create the vectorstore and DB **Only Use if DB not created**
-rag_remove.py           # Remove the documents from the VectorDB
+---
