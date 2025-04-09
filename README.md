@@ -3,8 +3,8 @@
 ## Overview
 This repository contains the scripts and sandbox environment for obtaining and processing SEO data. It is **not** the main backend or frontend repository for this project.
 
-- **Frontend Repository:** [Insert Link Here]
-- **Backend Repository:** [Insert Link Here]
+- **Frontend Repository:** [https://github.com/jgx02c/SEO-Scraper-Frontend]
+- **Backend Repository:** [https://github.com/jgx02c/SEO-Scraper-Backend]
 - **Note:** The backend server is currently **not hosted** due to its requirement for multiple CPU cores, making it costly to maintain.
 
 ---
